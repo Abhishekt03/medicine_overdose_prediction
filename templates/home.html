@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <link rel="icon" type="image/png" href="https://img.icons8.com/external-flatart-icons-lineal-color-flatarticons/64/000000/external-capsule-health-care-and-medical-flatart-icons-lineal-color-flatarticons.png" sizes="16x16">
+    <title>Opioid Medicine Overdose Risk Detection System</title>
+    <style>
+        .main{
+            text-align: center;
+            background-color: #fbfbeb;
+            justify-content: center;
+        }
+        .main img{
+            width: auto;
+            height: auto;
+            max-width: 40%;
+        }
+        table {
+          margin: 20px auto;
+          border-collapse: collapse;
+          width: 90%;
+      }
+
+      table, th, td {
+          border: 1px solid #ddd;
+      }
+
+      th, td {
+          padding: 8px;
+          text-align: left;
+      }
+
+      th {
+          background-color: #f2f2f2;
+      }
+
+    </style>
+
+<!-- Favicons -->
+  <link href="../static/img/favicon.png" rel="icon">
+  <link href="../static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  
+  
+
+  <!-- Template Main CSS File -->
+  <link href="../static/css/style.css" rel="stylesheet">
+
+
+</head>
+
+
+
+
+
+<body>
+
+  <!-- ======= Top Bar ======= -->
+  <div id="topbar" class="d-flex align-items-center fixed-top">
+    <div class="container d-flex justify-content-center justify-content-md-between">
+
+       
+
+      
+    </div>
+  </div>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-cente">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
+    
+      <h1 class="col-lg-8"><a href="index.html"> <span>Medicine Overdose Risk Detection</span></a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="../static/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul >
+          <li><a class="nav-link scrollto" href="{{ url_for('first')}}">Home</a></li>
+		    
+           
+		<li><a class="nav-link scrollto" href="{{ url_for('home')}}">Prediction</a></li>
+	    
+	    <li><a class="nav-link scrollto" href="{{ url_for('precautions')}}">precautions</a></li>
+
+
+           
+           </ul>
+          
+       
+     </nav>
+     
+
+      
+
+    </div>
+  </header><!-- End Header -->
+
+
+        
+
+
+
+<div class = main>
+
+    <img src="{{url_for('static',filename ="OPDS.png")}}">
+    <div class="form-group row" style="flex-direction: row ;font-size: large;">
+
+        <H style="font-size: larger;"><b><u>General Information</u></b></H>
+
+        <div style="margin-top: 2rem;" class="col-sm-10">
+        <label >First Name : </label>
+        <input type="text" id="Fn" class="form-control" placeholder="First name">
+        
+        <label >Last Name : </label>
+        <input type="text" id="Ln" class="form-control" placeholder="Last name">
+        </div>
+
+        <div class="col-sm-10" style="margin: 7px;">
+        <label style="margin-left: -56px;">Date of Birth : </label>
+        <input type="date" id="birthday" name="birthday">
+
+        <label style="margin-left: 22px;">Gender : </label>
+        <label>
+            <input type="radio" name="choice-radio">
+            Male
+          </label>
+          <label>
+            <input type="radio" name="choice-radio">
+            Female
+        </label>
+        </div>
+
+        
+
+        <div style="margin-bottom: 2rem;">
+        </div>
+        <H style="font-size: larger;"><b><u>Prescription Information</u></b></H>
+        <p> (Answer Does Your Prescription Includes) </p>
+
+        <div class= "row" style="display: flex;margin-left: 25%;margin-right: 25%;">
+
+          <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Medicine Name</th>
+                    <th>Description</th>
+                    <th>Yes</th>
+                    <th>No</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Medicine Table Rows -->
+                <tr>
+                    <td>1</td>
+                    <td>NovoLog FlexPen</td>
+                    <td>Insulin analog to improve glycemic control in diabetes.</td>
+                    <td><input type="checkbox" id="F1Y" value="1" onclick="check(1)"></td>
+                    <td><input type="checkbox" id="F1N" value="0" onclick="check(1)"></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Dutasteride</td>
+                    <td>Treats symptoms of an enlarged prostate (BPH).</td>
+                    <td><input type="checkbox" id="F2Y" value="1" onclick="check(2)"></td>
+                    <td><input type="checkbox" id="F2N" value="0" onclick="check(2)"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Timolol</td>
+                    <td>Beta-blocker for ocular hypertension and glaucoma.</td>
+                    <td><input type="checkbox" id="F3Y" value="1" onclick="check(3)"></td>
+                    <td><input type="checkbox" id="F3N" value="0" onclick="check(3)"></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Omega-3 Acid Ethyl Esters</td>
+                    <td>Treats high blood triglycerides, reducing pancreatitis risk.</td>
+                    <td><input type="checkbox" id="F4Y" value="1" onclick="check(4)"></td>
+                    <td><input type="checkbox" id="F4N" value="0" onclick="check(4)"></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Metformin</td>
+                    <td>Used to improve blood sugar control in type 2 diabetes.</td>
+                    <td><input type="checkbox" id="F5Y" value="1" onclick="check(5)"></td>
+                    <td><input type="checkbox" id="F5N" value="0" onclick="check(5)"></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Atorvastatin</td>
+                    <td>Helps lower cholesterol and triglycerides in the blood.</td>
+                    <td><input type="checkbox" id="F6Y" value="1" onclick="check(6)"></td>
+                    <td><input type="checkbox" id="F6N" value="0" onclick="check(6)"></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Levothyroxine</td>
+                    <td>Treats hypothyroidism (low thyroid hormone).</td>
+                    <td><input type="checkbox" id="F7Y" value="1" onclick="check(7)"></td>
+                    <td><input type="checkbox" id="F7N" value="0" onclick="check(7)"></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Lisinopril</td>
+                    <td>ACE inhibitor used to treat high blood pressure and heart failure.</td>
+                    <td><input type="checkbox" id="F8Y" value="1" onclick="check(8)"></td>
+                    <td><input type="checkbox" id="F8N" value="0" onclick="check(8)"></td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Warfarin</td>
+                    <td>Anticoagulant to prevent blood clots.</td>
+                    <td><input type="checkbox" id="F9Y" value="1" onclick="check(9)"></td>
+                    <td><input type="checkbox" id="F9N" value="0" onclick="check(9)"></td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Hydrocodone</td>
+                    <td>Opioid pain reliever used for moderate to severe pain.</td>
+                    <td><input type="checkbox" id="F10Y" value="1" onclick="check(10)"></td>
+                    <td><input type="checkbox" id="F10N" value="0" onclick="check(10)"></td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Tramadol</td>
+                    <td>Narcotic pain reliever for moderate to moderately severe pain.</td>
+                    <td><input type="checkbox" id="F11Y" value="1" onclick="check(11)"></td>
+                    <td><input type="checkbox" id="F11N" value="0" onclick="check(11)"></td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Gabapentin</td>
+                    <td>Treats nerve pain and seizures.</td>
+                    <td><input type="checkbox" id="F12Y" value="1" onclick="check(12)"></td>
+                    <td><input type="checkbox" id="F12N" value="0" onclick="check(12)"></td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>Ibuprofen</td>
+                    <td>Nonsteroidal anti-inflammatory drug for pain, fever, and inflammation.</td>
+                    <td><input type="checkbox" id="F13Y" value="1" onclick="check(13)"></td>
+                    <td><input type="checkbox" id="F13N" value="0" onclick="check(13)"></td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>Alprazolam</td>
+                    <td>Benzodiazepine for anxiety and panic disorders.</td>
+                    <td><input type="checkbox" id="F14Y" value="1" onclick="check(14)"></td>
+                    <td><input type="checkbox" id="F14N" value="0" onclick="check(14)"></td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>Paroxetine</td>
+                    <td>SSRI used for depression, anxiety, and other mental health disorders.</td>
+                    <td><input type="checkbox" id="F15Y" value="1" onclick="check(15)"></td>
+                    <td><input type="checkbox" id="F15N" value="0" onclick="check(15)"></td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>Fentanyl</td>
+                    <td>Strong opioid pain reliever for severe pain management.</td>
+                    <td><input type="checkbox" id="F16Y" value="1" onclick="check(16)"></td>
+                    <td><input type="checkbox" id="F16N" value="0" onclick="check(16)"></td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td>Fluticasone</td>
+                    <td>Corticosteroid to relieve symptoms of rhinitis and asthma.</td>
+                    <td><input type="checkbox" id="F17Y" value="1" onclick="check(17)"></td>
+                    <td><input type="checkbox" id="F17N" value="0" onclick="check(17)"></td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td>Albuterol</td>
+                    <td>Bronchodilator for asthma and COPD.</td>
+                    <td><input type="checkbox" id="F18Y" value="1" onclick="check(18)"></td>
+                    <td><input type="checkbox" id="F18N" value="0" onclick="check(18)"></td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td>Zolpidem</td>
+                    <td>Sleep aid for insomnia.</td>
+                    <td><input type="checkbox" id="F19Y" value="1" onclick="check(19)"></td>
+                    <td><input type="checkbox" id="F19N" value="0" onclick="check(19)"></td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td>Risperidone</td>
+                    <td>Atypical antipsychotic for schizophrenia and bipolar disorder.</td>
+                    <td><input type="checkbox" id="F20Y" value="1" onclick="check(20)"></td>
+                    <td><input type="checkbox" id="F20N" value="0" onclick="check(20)"></td>
+                </tr>
+                <tr>
+                    <td>21</td>
+                    <td>Venlafaxine</td>
+                    <td>SNRI for depression and anxiety disorders.</td>
+                    <td><input type="checkbox" id="F21Y" value="1" onclick="check(21)">Yes</td>
+                    <td><input type="checkbox" id="F21N" value="0" onclick="check(21)">No</td>
+                </tr>
+                <tr>
+                    <td>22</td>
+                    <td>Hydromorphone</td>
+                    <td>Opioid pain reliever for severe pain.</td>
+                    <td><input type="checkbox" id="F22Y" value="1" onclick="check(22)">Yes</td>
+                    <td><input type="checkbox" id="F22N" value="0" onclick="check(22)">No</td>
+                </tr>
+                
+            </tbody>
+        </table>
+                
+                
+                
+            </div>
+
+        </div>
+
+        <div style="margin-bottom: 3rem;">
+        </div>
+
+        <button type="submit" onclick = "main()" class="btn btn-primary">Submit</button>
+        
+        <div style="margin-bottom: 8rem;">
+        </div>
+
+        <div id = "graph" style="justify-content: center;visibility: hidden; margin-bottom: -434px;">
+            <H style="font-size: larger;"><b><u>Result</u></b></H>
+            <p id="Conc"></p>
+            <canvas  id="myChart" style="width:100%;max-width:600px;margin:0 auto;"></canvas>
+            <div style="margin-bottom: 8rem;">
+            </div>
+        </div>
+
+            </div>
+</div>    
+</body>
+<script>
+var Features = [] 
+var yValues = [0.54, 0.48];
+var totalMedicines = 30;  // Updated to 30 medicines, change as needed
+
+// Initialize the features and checkboxes dynamically based on totalMedicines
+for (let i = 1; i <= 22; i++) {
+    Features.push(0); // Initialize all to '0' (false)
+    document.getElementById("F"+String(i)+"Y").checked = false;
+    document.getElementById("F"+String(i)+"N").checked = true;
+}
+
+function check(i) {
+    if (Features[i-1] == 0) {
+        Features[i-1] = 1;
+        document.getElementById("F" + String(i) + "Y").checked = true;
+        document.getElementById("F" + String(i) + "N").checked = false;
+    } else {
+        Features[i-1] = 0;
+        document.getElementById("F" + String(i) + "Y").checked = false;
+        document.getElementById("F" + String(i) + "N").checked = true;
+    }
+}
+
+function main() {
+    var Result = [];
+    var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+    xmlhttp.open("POST", "/Predict");
+    xmlhttp.responseType = "json";
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4) {
+            var blob = new Blob([this.response], { type: "application/octet-stream" });
+            Result = this.response;
+            console.log(Result);
+            yValues[0] = Result[0] * 100;
+            yValues[1] = Result[1] * 100;
+            Chart.update();
+            document.getElementById("graph").style.visibility = "visible";
+            document.getElementById("graph").style.marginBottom = "0px";
+            var conc = document.getElementById("Conc");
+            var Name = document.getElementById("Fn").value;
+            if (Result[1] < 0.4) {
+                conc.innerHTML = "Hey " + Name + ", you are in a good condition no need to worry.";
+            } else if (Result[1] < 0.6) {
+                conc.innerHTML = "Hey " + Name + ", you are in a fair condition but you need to take proper care.";
+            } else {
+                conc.innerHTML = "Hey " + Name + ", you are not in a good condition you should take care for yourself";
+            }
+        }
+    };
+    xmlhttp.send(JSON.stringify(Features));
+}
+
+// Data for the doughnut chart
+var xValues = ["Safe", "Danger"];
+var barColors = ["#00FF00", "#ff0000"];
+
+var Chart = new Chart("myChart", {
+    type: "doughnut",
+    data: {
+        labels: xValues,
+        datasets: [{
+            backgroundColor: barColors,
+            data: yValues
+        }]
+    },
+    options: {
+        title: {
+            display: true,
+            text: "Overall Risk Percentage"
+        }
+    }
+});
+
+function myFunction() {
+    var x = document.getElementById("myCheck").value;
+    document.getElementById("demo").innerHTML = x;
+}
+</script>
+
+</html>

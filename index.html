@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Medicine Overdose Prediction</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background-color: #fff;
+      border: 1px solid black; 
+  }
+  th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+  }
+  th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+  }
+  td {
+      vertical-align: middle;
+  }
+</style>
+
+  <!-- Favicons -->
+  <link href="../static/img/favicon.png" rel="icon">
+  <link href="../static/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="templates/style.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../static/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../static/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../static/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Restaurantly - v3.0.1
+  * Template URL: https://bootstrapmade.com/restaurantly-restaurant-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Top Bar ======= -->
+  <div id="topbar" class="d-flex align-items-center fixed-top">
+    <div class="container d-flex justify-content-center justify-content-md-between">
+
+       
+
+      
+    </div>
+  </div>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-cente">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
+    
+      <h1 class="col-lg-8"><a href="index.html"> <span>Medicine Overdose Prediction</span></a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto active" href="{{ url_for('first')}}">Home</a></li>
+           
+          <li><a class="nav-link scrollto" href="{{ url_for('login')}}">Login</a></li>
+		         
+        
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+      
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
+      <div class="row">
+        <div class="col-lg-8">
+          <h1>Medicine Overdose Prediction using Machine learning</h1>
+          
+          <div class="btns">
+            <a href="#about" class="btn-menu animated fadeInUp scrollto"></a>
+           
+          </div>
+        </div>
+        
+
+      </div>
+    </div>
+  </section><!-- End Hero -->
+<br><br><br>
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
+            
+          </div>
+         <div class="col-lg-4 ml-auto" style="margin-left:360px;">
+            <center><h3><b><u>About</h3></b></u></center>
+			 </div>
+			 </br>
+			 </br>
+            <p >
+              Leveraging advanced data analytics and machine learning to predict and prevent medicine overdoses for improved patient safety.
+            </p>
+          <div> <img src="../static/img/11.png" width="100%" height="500px" align="center">
+        </div>
+
+        <p >
+          To develop a predictive system that identifies patients at risk of medication overdose based on their medical history, prescription details, and other relevant factors. The system aims to assist healthcare providers in preventing overdoses by providing actionable insights and alerts during prescription and medication dispensation.
+        </p>
+      </div>
+
+      <br>
+      <br>
+      <div> <h1>MEDICINE DETAILS</h1> <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Medication</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>NovoLog FlexPen</td>
+                <td>Indicated to improve glycemic control in adults and children with diabetes mellitus.</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Dutasteride</td>
+                <td>Used to treat symptoms of an enlarged prostate (BPH), reduces the size of the enlarged prostate.</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Timolol</td>
+                <td>A beta blocker medication used to treat increased pressure inside the eye, such as in ocular hypertension and glaucoma.</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Omega-3 Acid Ethyl Esters</td>
+                <td>Used to treat high blood triglycerides to reduce the risk of pancreatitis, found in fish oil.</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Prescription for Alzheimer's</td>
+                <td>Indicates if there is a prescription for Alzheimer's disease treatment.</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Prescription for Diabetes</td>
+                <td>Indicates if there is a prescription for diabetes treatment.</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Travoprost</td>
+                <td>Used for high pressure inside the eye, including glaucoma, when other agents are insufficient.</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Finasteride</td>
+                <td>Used to treat hair loss and benign prostatic hyperplasia in men.</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>History of Heart Attack</td>
+                <td>Indicates if the patient has a history of heart attacks.</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Latanoprost</td>
+                <td>Treats increased pressure inside the eye, such as ocular hypertension and open angle glaucoma.</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>Insulin Glargine</td>
+                <td>Long-acting insulin for managing type I and type II diabetes. Used once a day via injection under the skin.</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>Insulin Detemir</td>
+                <td>Long-acting insulin for treating both type 1 and type 2 diabetes, injected under the skin.</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>Brimonidine Tartrate</td>
+                <td>Used to treat open-angle glaucoma or high fluid pressure in the eye. Lowers risk of nerve damage or vision loss.</td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>Bimatoprost</td>
+                <td>Treats high eye pressure, including glaucoma, and may also increase eyelash size.</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>Cyclosporine</td>
+                <td>Immunosuppressant for treating rheumatoid arthritis, psoriasis, and other immune disorders.</td>
+            </tr>
+            <tr>
+                <td>16</td>
+                <td>Morphine Sulfate</td>
+                <td>Used to manage severe pain requiring daily, long-term opioid treatment.</td>
+            </tr>
+            <tr>
+                <td>17</td>
+                <td>Neomycin Topical</td>
+                <td>Prevents or treats skin infections caused by bacteria (not effective for fungal or viral infections).</td>
+            </tr>
+            <tr>
+                <td>18</td>
+                <td>Primidone</td>
+                <td>Barbiturate medication used to treat partial/generalized seizures and essential tremors.</td>
+            </tr>
+            <tr>
+                <td>19</td>
+                <td>Humalog</td>
+                <td>Insulin to treat type 1 and type 2 diabetes, taken around meal times via injection.</td>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td>NovoLog</td>
+                <td>Manufactured insulin for type 1 and type 2 diabetes, typically taken just before meals.</td>
+            </tr>
+            <tr>
+                <td>21</td>
+                <td>Dorzolamide/Timolol</td>
+                <td>Eye drop combination for high eye pressure when a beta blocker alone isn't sufficient.</td>
+            </tr>
+            <tr>
+                <td>22</td>
+                <td>Diclofenac</td>
+                <td>Nonsteroidal anti-inflammatory drug for pain and inflammatory diseases, including gout.</td>
+            </tr>
+        </tbody>
+    </table></div>
+    <br>
+    <br>
+      
+
+   
+
+   
+  <!-- ======= Footer ======= -->
+  <!-- End Footer --><div>
+<div ><footer style="text-align:center;  background-color:black; color:white;" > Copyrights © 2024 . All rights reserved. Privacy Policy | Mandatory Disclosure</footer>
+</div></div>
+<div id="preloader"></div>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <!-- Vendor JS Files -->
+  <script src="../static/vendor/aos/aos.js"></script>
+  <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../static/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../static/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../static/vendor/php-email-form/validate.js"></script>
+  <script src="../static/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../static/js/main.js"></script>
+
+</body>
+
+</html>
