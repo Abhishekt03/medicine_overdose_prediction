@@ -5,272 +5,355 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Medicine Overdose Prediction</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title>Login | Medicine Overdose Prediction</title>
+  <meta content="Login to access the Medicine Overdose Prediction system" name="description">
+  <meta content="medicine overdose, prediction, healthcare, machine learning" name="keywords">
 
   <!-- Favicons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
-  <link href="../static/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="../static/vendor/aos/aos.css" rel="stylesheet">
-  <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="../static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="../static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="../static/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="../static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Template Main CSS File -->
-  <link href="../static/css/style5.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Company - v4.6.1
-  * Template URL: https://bootstrapmade.com/company-free-html-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <style>
+    :root {
+      --primary: #2c6bac;
+      --secondary: #5b95ff;
+      --accent: #21cbff;
+      --light: #f8f9fa;
+      --dark: #343a40;
+      --success: #28a745;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e3f2fd 100%);
+      color: #333;
+      min-height: 100vh;
+    }
+    
+    .header {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      padding: 15px 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .navbar {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .navbar-nav .nav-link {
+      color: var(--dark);
+      font-weight: 500;
+      padding: 0.8rem 1rem;
+      transition: all 0.3s;
+    }
+    
+    .navbar-nav .nav-link:hover {
+      color: var(--primary);
+      background: rgba(43, 107, 172, 0.1);
+      border-radius: 4px;
+    }
+    
+    .hero-section {
+      background: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+      background-size: cover;
+      padding: 100px 0;
+      position: relative;
+    }
+    
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(43, 107, 172, 0.85);
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      color: white;
+    }
+    
+    .login-container {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      margin: -70px auto 50px;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .login-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    
+    .login-header h2 {
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    
+    .login-header p {
+      color: #666;
+    }
+    
+    .form-control {
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 12px 15px;
+      transition: all 0.3s;
+    }
+    
+    .form-control:focus {
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 0.2rem rgba(91, 149, 255, 0.25);
+    }
+    
+    .btn-login {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: all 0.3s;
+      width: 100%;
+    }
+    
+    .btn-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(43, 107, 172, 0.3);
+    }
+    
+    .info-card {
+      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 20px;
+      border-left: 4px solid var(--primary);
+    }
+    
+    .info-card h5 {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+    
+    @media (max-width: 768px) {
+      .login-container {
+        margin: 30px auto;
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- ======= Top Bar ======= -->
-  <div id="topbar" class="d-flex align-items-center fixed-top">
-    <div class="container d-flex justify-content-center justify-content-md-between">
-
-       
-
-      
-    </div>
-  </div>
-
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-cente">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
-    
-      <h1 class="col-lg-8"><a href="index.html"> <span>Medicine Overdose Prediction</span></a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="../static/img/logo.png" alt="" class="img-fluid"></a>-->
-
-      <nav id="navbar" class="navbar order-last order-lg-0">
-        <ul>
-          <li><a class="nav-link scrollto" href="{{ url_for('first')}}">Home</a></li>
-		   
-           
-		<li><a class="nav-link scrollto" href="{{ url_for('home')}}">Prediction</a></li>
-	  
-	    <li><a class="nav-link scrollto" href="{{ url_for('precautions')}}">precautions</a></li>
-
-
-           
-           </ul>
-          
-       
-     </nav>
-     
-
-      
-
-    </div>
-  </header><!-- End Header -->
-
-
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
-    <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
-      <div class="row">
-        <div class="col-lg-8">
-       <h1><span>Medicine Overdose Prediction through Machine Learning Approaches</span></h1>
-
-          
+  <header class="header">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h1 class="mb-0">Medicine Overdose Prediction</h1>
         </div>
-        
-
+        <div class="col-md-6 text-md-right">
+          <p class="mb-0"><i class="fas fa-pills mr-2"></i>Intelligent Healthcare Solutions</p>
+        </div>
       </div>
     </div>
-  </section> 
-  <br><br><br>
+  </header>
 
- <main id="main">
-<!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container" data-aos="fade-up">
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('first')}}"><i class="fas fa-home mr-1"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('home')}}"><i class="fas fa-diagnoses mr-1"></i> Prediction</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('precautions')}}"><i class="fas fa-shield-alt mr-1"></i> Precautions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#"><i class="fas fa-sign-in-alt mr-1"></i> Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-        <div class="row">
-          <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-content">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h1 class="display-4 fw-bold">Medicine Overdose Prediction</h1>
+          <p class="lead">Advanced machine learning approaches for predicting medication overdose risks</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Login Section -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+          <div class="login-container" data-aos="fade-up">
+            <div class="login-header">
+              <h2><i class="fas fa-sign-in-alt me-2"></i>Login</h2>
+              <p>Access your account to continue</p>
+            </div>
+            
+            <form id="loginForm">
+              <div class="mb-3">
+                <label for="username" class="form-label"><strong>Username</strong></label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+              </div>
+              
+              <div class="mb-4">
+                <label for="password" class="form-label"><strong>Password</strong></label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+              </div>
+              
+              <div class="d-grid">
+                <button type="button" class="btn btn-login" onclick="login()">
+                  <i class="fas fa-sign-in-alt me-2"></i>Login
+                </button>
+              </div>
+              
+              <div class="text-center mt-3">
+                <a href="#" class="text-decoration-none">Forgot password?</a>
+              </div>
+            </form>
+            
+            <!-- Info Card -->
             
           </div>
-         <div class="col-lg-4 ml-auto" style="margin-left:360px;">
-            <center><h2>Login</h2></center>
-			 </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Footer -->
+  <footer class="text-center">
+    <div class="container">
+      <p class="mb-0">© 2023 Medicine Overdose Prediction System | Advanced Healthcare Analytics</p>
+    </div>
+  </footer>
 
-    
+  <!-- Bootstrap & Vendor JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 
- 
-    <section id="book-a-table" class="book-a-table">
-      <div class="container" data-aos="fade-up">
-
-        
-          <head>
-
-        
-         
- 
-		 <script>
-      addEventListener("load", function () {
-        setTimeout(hideURLbar, 0);
-    }, false);
-    
-    function hideURLbar() {
-        window.scrollTo(0, 1);
-    }
+  <script>
+    // Initialize AOS animations
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true
+    });
     
     // Define multiple username-password pairs
     const validCredentials = {
-        "satish": "1234",
-        "abhi": "hello",
-        "savitri": "234",
-        // Add more username-password pairs as needed
+      "satish": "1234",
+      "abhi": "hello",
+      "savitri": "234"
     };
     
     function login() {
-        var uname = document.getElementById("uname").value;
-        var pwd = document.getElementById("pwd").value;
-    
-        // Check if the entered username and password match any pair
-        if (validCredentials[uname] === pwd) {
-            alert("Login Success!");
-            window.location = "{{url_for('upload')}}";
-            return false;
-        } else {
-            alert("Invalid Credentials!");
-        }
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      
+      if (!username || !password) {
+        showAlert("Please enter both username and password.", "danger");
+        return;
+      }
+      
+      // Check if the entered username and password match any pair
+      if (validCredentials[username] === password) {
+        showAlert("Login successful! Redirecting...", "success");
+        
+        // Simulate redirect after a brief delay
+        setTimeout(() => {
+          window.location = "{{url_for('upload')}}";
+        }, 1500);
+      } else {
+        showAlert("Invalid username or password. Please try again.", "danger");
+      }
     }
     
-		  
-
-
- 
-    </script>
-	
-</head>
-
- <body id="page-top">
-
-   
- 
-
-  <!-- Portfolio Section -->
-  <section class="page-section portfolio" id="portfolio">
- 
-      <br>
-	  <br>
-      <!-- Portfolio Section Heading -->
-       
-      <!-- Icon Divider -->
+    function showAlert(message, type) {
+      // Remove any existing alerts
+      const existingAlert = document.getElementById("loginAlert");
+      if (existingAlert) {
+        existingAlert.remove();
+      }
+      
+      // Create alert element
+      const alertDiv = document.createElement("div");
+      alertDiv.id = "loginAlert";
+      alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+      alertDiv.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      `;
+      
+      // Insert alert before the form
+      const form = document.getElementById("loginForm");
+      form.parentNode.insertBefore(alertDiv, form);
+      
+      // Auto dismiss after 5 seconds
+      setTimeout(() => {
+        if (document.getElementById("loginAlert")) {
+          document.getElementById("loginAlert").remove();
+        }
+      }, 5000);
+    }
     
- <div class="section-title">
-           
-         <center> <p>Login</p></center>
-        </div>
-      <!-- Portfolio Grid Items -->
-      <div class="row">
-
-        <!-- Portfolio Item 1 -->
-        <div class="col-md-6 col-lg-4" style="margin-left:380px">
-		 <div class="control-group">
-			      <!-- Username -->
-				 
-			      <label class="control-label"   for="username"><b>Username</b></label>
-			      <div class="controls">
-			        <input type="text" id="uname" name="uname" placeholder="" class="form-control">
-			       
-				  </div>
-			    </div>
-			    <div class="control-group">
-			      <!-- Password-->
-				  </br>
-			      <label class="control-label"  for="password"><b>Password</b></label>
-			      <div class="controls">
-			        <input type="password" id="pwd" name="pwd" placeholder="" class="form-control">
-			      
-				  </div>
-			    </div>
-				 <div class="col-md-6 col-lg-4" style="margin-left:-150px">
-			    <div class="control-group">
-			      <!-- Button -->
-				  <br>
-			      <div class="controls">
-				   
-			        <input type="button" class="btn btn-success" value="Login" style="margin-left: 280px" onclick="login()">
-			      
-				  </div>
-			    </div>
-				 </div>
-  </div>
-  </div>
- 
- 
-  </section>
-
-
-  
-
-    </body>
-
-
-
-         
-      </div>
-    </section><!-- End Book A Table Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    <!-- End Gallery Section -->
-
-    <!-- ======= Chefs Section ======= -->
-    <!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-     
-
-    <div class="container">
-      <div class="copyright">
-        
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/restaurantly-restaurant-template/ -->
-         
-      </div>
-    </div>
-  </footer><!-- End Footer -->
-
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
- <script src="../static/vendor/aos/aos.js"></script>
-  <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../static/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="../static/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="../static/vendor/php-email-form/validate.js"></script>
-  <script src="../static/vendor/swiper/swiper-bundle.min.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="../static/js/main.js"></script>
+    // Allow submitting form with Enter key
+    document.getElementById("password").addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        login();
+      }
+    });
+  </script>
 
 </body>
-
 
 </html>
