@@ -75,6 +75,7 @@
             background: white;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
         }
         
         /* Header styles */
@@ -126,8 +127,34 @@
             font-weight: bold;
         }
         
+        /* BIG GRAPH STYLES */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px; /* Increased from 600px */
+            margin: 0 auto;
+        }
+        
+        #myChart {
+            width: 100% !important;
+            height: 400px !important; /* Increased height */
+        }
+        
+        /* Radio button styles */
+        .radio-group {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+            cursor: pointer;
+        }
+        
         /* Responsive adjustments */
-        @media (max-width: 1440px) {
+        @media (max-width: 768px) {
             .main img {
                 max-width: 80%;
             }
@@ -139,6 +166,15 @@
             
             .form-group.row {
                 flex-direction: column;
+            }
+            
+            #myChart {
+                height: 300px !important; /* Slightly smaller on mobile but still big */
+            }
+            
+            .radio-group {
+                flex-direction: column;
+                gap: 5px;
             }
         }
     </style>
@@ -184,13 +220,9 @@
             </div>
             <div class="col-md-5">
                 <label>Gender:</label>
-                <div>
-                    <label class="radio-inline">
-                        <input type="radio" name="gender" value="male"> Male
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="gender" value="female"> Female
-                    </label>
+                <div class="radio-group">
+                    <label><input type="radio" name="gender" value="male"> Male</label>
+                    <label><input type="radio" name="gender" value="female"> Female</label>
                 </div>
             </div>
         </div>
@@ -211,177 +243,178 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Medicine Table Rows -->
+                <!-- Medicine Table Rows with Radio Buttons -->
                 <tr>
                     <td>1</td>
                     <td>NovoLog FlexPen</td>
                     <td>Insulin analog to improve glycemic control in diabetes.</td>
-                    <td><input type="checkbox" class="yes-check" id="F1Y" value="1" onclick="check(1)"></td>
-                    <td><input type="checkbox" class="no-check" id="F1N" value="0" onclick="check(1)"></td>
+                    <td><input type="radio" name="med1" value="1" class="med-radio" data-risk="0.1"></td>
+                    <td><input type="radio" name="med1" value="0" class="med-radio" checked></td>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>Dutasteride</td>
                     <td>Treats symptoms of an enlarged prostate (BPH).</td>
-                    <td><input type="checkbox" class="yes-check" id="F2Y" value="1" onclick="check(2)"></td>
-                    <td><input type="checkbox" class="no-check" id="F2N" value="0" onclick="check(2)"></td>
+                    <td><input type="radio" name="med2" value="1" class="med-radio" data-risk="0.2"></td>
+                    <td><input type="radio" name="med2" value="0" class="med-radio" checked></td>
                 </tr>
                 <tr>
                     <td>3</td>
                     <td>Timolol</td>
                     <td>Beta-blocker for ocular hypertension and glaucoma.</td>
-                    <td><input type="checkbox" class="yes-check" id="F3Y" value="1" onclick="check(3)"></td>
-                    <td><input type="checkbox" class="no-check" id="F3N" value="0" onclick="check(3)"></td>
+                    <td><input type="radio" name="med3" value="1" class="med-radio" data-risk="0.3"></td>
+                    <td><input type="radio" name="med3" value="0" class="med-radio" checked></td>
                 </tr>
                 <tr>
                     <td>4</td>
                     <td>Omega-3 Acid Ethyl Esters</td>
                     <td>Treats high blood triglycerides, reducing pancreatitis risk.</td>
-                    <td><input type="checkbox" class="yes-check" id="F4Y" value="1" onclick="check(4)"></td>
-                    <td><input type="checkbox" class="no-check" id="F4N" value="0" onclick="check(4)"></td>
+                    <td><input type="radio" name="med4" value="1" class="med-radio" data-risk="0.1"></td>
+                    <td><input type="radio" name="med4" value="0" class="med-radio" checked></td>
                 </tr>
                 <tr>
                     <td>5</td>
                     <td>Metformin</td>
                     <td>Used to improve blood sugar control in type 2 diabetes.</td>
-                    <td><input type="checkbox" class="yes-check" id="F5Y" value="1" onclick="check(5)"></td>
-                    <td><input type="checkbox" class="no-check" id="F5N" value="0" onclick="check(5)"></td>
+                    <td><input type="radio" name="med5" value="1" class="med-radio" data-risk="0.2"></td>
+                    <td><input type="radio" name="med5" value="0" class="med-radio" checked></td>
                 </tr>
                 <tr>
                     <td>6</td>
                     <td>Atorvastatin</td>
                     <td>Helps lower cholesterol and triglycerides in the blood.</td>
-                    <td><input type="checkbox" class="yes-check" id="F6Y" value="1" onclick="check(6)"></td>
-                    <td><input type="checkbox" class="no-check" id="F6N" value="0" onclick="check(6)"></td>
+                    <td><input type="radio" name="med6" value="1" class="med-radio" data-risk="0.2"></td>
+                    <td><input type="radio" name="med6" value="0" class="med-radio" checked></td>
                 </tr>
                 <tr>
                     <td>7</td>
                     <td>Levothyroxine</td>
                     <td>Treats hypothyroidism (low thyroid hormone).</td>
-                    <td><input type="checkbox" class="yes-check" id="F7Y" value="1" onclick="check(7)"></td>
-                    <td><input type="checkbox" class="no-check" id="F7N" value="0" onclick="check(7)"></td>
+                    <td><input type="radio" name="med7" value="1" class="med-radio" data-risk="0.3"></td>
+                    <td><input type="radio" name="med7" value="0" class="med-radio" checked></td>
                 </tr>
                 <tr>
                     <td>8</td>
                     <td>Lisinopril</td>
                     <td>ACE inhibitor used to treat high blood pressure and heart failure.</td>
-                    <td><input type="checkbox" class="yes-check" id="F8Y" value="1" onclick="check(8)"></td>
-                    <td><input type="checkbox" class="no-check" id="F8N" value="0" onclick="check(8)"></td>
+                    <td><input type="radio" name="med8" value="1" class="med-radio" data-risk="0.4"></td>
+                    <td><input type="radio" name="med8" value="0" class="med-radio" checked></td>
                 </tr>
                 <tr>
                     <td>9</td>
                     <td>Warfarin</td>
                     <td>Anticoagulant to prevent blood clots.</td>
-                    <td><input type="checkbox" class="yes-check" id="F9Y" value="1" onclick="check(9)"></td>
-                    <td><input type="checkbox" class="no-check" id="F9N" value="0" onclick="check(9)"></td>
+                    <td><input type="radio" name="med9" value="1" class="med-radio" data-risk="0.6"></td>
+                    <td><input type="radio" name="med9" value="0" class="med-radio" checked></td>
                 </tr>
                 <tr>
                     <td>10</td>
                     <td>Hydrocodone</td>
                     <td>Opioid pain reliever used for moderate to severe pain.</td>
-                    <td><input type="checkbox" class="yes-check" id="F10Y" value="1" onclick="check(10)"></td>
-                    <td><input type="checkbox" class="no-check" id="F10N" value="0" onclick="check(10)"></td>
+                    <td><input type="radio" name="med10" value="1" class="med-radio" data-risk="0.9"></td>
+                    <td><input type="radio" name="med10" value="0" class="med-radio" checked></td>
                 </tr>
                 <tr>
                     <td>11</td>
                     <td>Tramadol</td>
                     <td>Narcotic pain reliever for moderate to moderately severe pain.</td>
-                    <td><input type="checkbox" class="yes-check" id="F11Y" value="1" onclick="check(11)"></td>
-                    <td><input type="checkbox" class="no-check" id="F11N" value="0" onclick="check(11)"></td>
+                    <td><input type="radio" name="med11" value="1" class="med-radio" data-risk="0.8"></td>
+                    <td><input type="radio" name="med11" value="0" class="med-radio" checked></td>
                 </tr>
                 <tr>
                     <td>12</td>
                     <td>Gabapentin</td>
                     <td>Treats nerve pain and seizures.</td>
-                    <td><input type="checkbox" class="yes-check" id="F12Y" value="1" onclick="check(12)"></td>
-                    <td><input type="checkbox" class="no-check" id="F12N" value="0" onclick="check(12)"></td>
+                    <td><input type="radio" name="med12" value="1" class="med-radio" data-risk="0.7"></td>
+                    <td><input type="radio" name="med12" value="0" class="med-radio" checked></td>
                 </tr>
                 <tr>
                     <td>13</td>
                     <td>Ibuprofen</td>
                     <td>Nonsteroidal anti-inflammatory drug for pain, fever, and inflammation.</td>
-                    <td><input type="checkbox" class="yes-check" id="F13Y" value="1" onclick="check(13)"></td>
-                    <td><input type="checkbox" class="no-check" id="F13N" value="0" onclick="check(13)"></td>
+                    <td><input type="radio" name="med13" value="1" class="med-radio" data-risk="0.4"></td>
+                    <td><input type="radio" name="med13" value="0" class="med-radio" checked></td>
                 </tr>
                 <tr>
                     <td>14</td>
                     <td>Alprazolam</td>
                     <td>Benzodiazepine for anxiety and panic disorders.</td>
-                    <td><input type="checkbox" class="yes-check" id="F14Y" value="1" onclick="check(14)"></td>
-                    <td><input type="checkbox" class="no-check" id="F14N" value="0" onclick="check(14)"></td>
+                    <td><input type="radio" name="med14" value="1" class="med-radio" data-risk="0.8"></td>
+                    <td><input type="radio" name="med14" value="0" class="med-radio" checked></td>
                 </tr>
                 <tr>
                     <td>15</td>
                     <td>Paroxetine</td>
                     <td>SSRI used for depression, anxiety, and other mental health disorders.</td>
-                    <td><input type="checkbox" class="yes-check" id="F15Y" value="1" onclick="check(15)"></td>
-                    <td><input type="checkbox" class="no-check" id="F15N" value="0" onclick="check(15)"></td>
+                    <td><input type="radio" name="med15" value="1" class="med-radio" data-risk="0.7"></td>
+                    <td><input type="radio" name="med15" value="0" class="med-radio" checked></td>
                 </tr>
                 <tr>
                     <td>16</td>
                     <td>Fentanyl</td>
                     <td>Strong opioid pain reliever for severe pain management.</td>
-                    <td><input type="checkbox" class="yes-check" id="F16Y" value="1" onclick="check(16)"></td>
-                    <td><input type="checkbox" class="no-check" id="F16N" value="0" onclick="check(16)"></td>
+                    <td><input type="radio" name="med16" value="1" class="med-radio" data-risk="1.0"></td>
+                    <td><input type="radio" name="med16" value="0" class="med-radio" checked></td>
                 </tr>
                 <tr>
                     <td>17</td>
                     <td>Fluticasone</td>
                     <td>Corticosteroid to relieve symptoms of rhinitis and asthma.</td>
-                    <td><input type="checkbox" class="yes-check" id="F17Y" value="1" onclick="check(17)"></td>
-                    <td><input type="checkbox" class="no-check" id="F17N" value="0" onclick="check(17)"></td>
+                    <td><input type="radio" name="med17" value="1" class="med-radio" data-risk="0.3"></td>
+                    <td><input type="radio" name="med17" value="0" class="med-radio" checked></td>
                 </tr>
                 <tr>
                     <td>18</td>
                     <td>Albuterol</td>
                     <td>Bronchodilator for asthma and COPD.</td>
-                    <td><input type="checkbox" class="yes-check" id="F18Y" value="1" onclick="check(18)"></td>
-                    <td><input type="checkbox" class="no-check" id="F18N" value="0" onclick="check(18)"></td>
+                    <td><input type="radio" name="med18" value="1" class="med-radio" data-risk="0.3"></td>
+                    <td><input type="radio" name="med18" value="0" class="med-radio" checked></td>
                 </tr>
                 <tr>
                     <td>19</td>
                     <td>Zolpidem</td>
                     <td>Sleep aid for insomnia.</td>
-                    <td><input type="checkbox" class="yes-check" id="F19Y" value="1" onclick="check(19)"></td>
-                    <td><input type="checkbox" class="no-check" id="F19N" value="0" onclick="check(19)"></td>
+                    <td><input type="radio" name="med19" value="1" class="med-radio" data-risk="0.7"></td>
+                    <td><input type="radio" name="med19" value="0" class="med-radio" checked></td>
                 </tr>
                 <tr>
                     <td>20</td>
                     <td>Risperidone</td>
                     <td>Atypical antipsychotic for schizophrenia and bipolar disorder.</td>
-                    <td><input type="checkbox" class="yes-check" id="F20Y" value="1" onclick="check(20)"></td>
-                    <td><input type="checkbox" class="no-check" id="F20N" value="0" onclick="check(20)"></td>
+                    <td><input type="radio" name="med20" value="1" class="med-radio" data-risk="0.6"></td>
+                    <td><input type="radio" name="med20" value="0" class="med-radio" checked></td>
                 </tr>
                 <tr>
                     <td>21</td>
                     <td>Venlafaxine</td>
                     <td>SNRI for depression and anxiety disorders.</td>
-                    <td><input type="checkbox" class="yes-check" id="F21Y" value="1" onclick="check(21)"></td>
-                    <td><input type="checkbox" class="no-check" id="F21N" value="0" onclick="check(21)"></td>
+                    <td><input type="radio" name="med21" value="1" class="med-radio" data-risk="0.7"></td>
+                    <td><input type="radio" name="med21" value="0" class="med-radio" checked></td>
                 </tr>
                 <tr>
                     <td>22</td>
                     <td>Hydromorphone</td>
                     <td>Opioid pain reliever for severe pain.</td>
-                    <td><input type="checkbox" class="yes-check" id="F22Y" value="1" onclick="check(22)"></td>
-                    <td><input type="checkbox" class="no-check" id="F22N" value="0" onclick="check(22)"></td>
+                    <td><input type="radio" name="med22" value="1" class="med-radio" data-risk="0.9"></td>
+                    <td><input type="radio" name="med22" value="0" class="med-radio" checked></td>
                 </tr>
             </tbody>
         </table>
                 
-        <button type="submit" onclick="calculateRisk()" class="btn btn-primary btn-lg" style="margin-top: 20px;">Submit</button>
+        <button type="submit" onclick="calculateRisk()" class="btn btn-primary btn-lg" style="margin-top: 20px;">Calculate Risk</button>
     </div>
 
     <div id="graph" style="justify-content: center; display: none;">
-        <h2 class="info-heading"><b><u>Result</u></b></h2>
+        <h2 class="info-heading"><b><u>Risk Assessment Result</u></b></h2>
         <p id="Conc"></p>
-        <canvas id="myChart" style="width:100%;max-width:600px;margin:0 auto;"></canvas>
+        <div class="chart-container">
+            <canvas id="myChart"></canvas>
+        </div>
     </div>
   </div>
 
 <script>
 // Global variables
-var Features = [];
 var myChart; // Chart instance
 
 // Risk weights for each medicine (higher weight = higher risk)
@@ -410,29 +443,6 @@ const riskWeights = {
     22: 0.9   // Hydromorphone (opioid)
 };
 
-// Initialize the features and checkboxes
-function initFeatures() {
-    for (let i = 1; i <= 22; i++) {
-        Features.push(0); // Initialize all to '0' (false)
-        document.getElementById("F"+i+"Y").checked = false;
-        document.getElementById("F"+i+"N").checked = true;
-    }
-}
-
-// Toggle checkbox state
-function check(i) {
-    const yesCheckbox = document.getElementById("F" + i + "Y");
-    const noCheckbox = document.getElementById("F" + i + "N");
-    
-    if (event.target === yesCheckbox && yesCheckbox.checked) {
-        Features[i-1] = 1;
-        noCheckbox.checked = false;
-    } else if (event.target === noCheckbox && noCheckbox.checked) {
-        Features[i-1] = 0;
-        yesCheckbox.checked = false;
-    }
-}
-
 // Calculate risk based on selected medicines
 function calculateRisk() {
     // Basic validation
@@ -446,9 +456,10 @@ function calculateRisk() {
     let selectedMeds = 0;
     
     // Calculate risk based on selected medicines and their weights
-    for (let i = 0; i < Features.length; i++) {
-        if (Features[i] === 1) {
-            totalRisk += riskWeights[i+1];
+    for (let i = 1; i <= 22; i++) {
+        const selectedValue = document.querySelector(`input[name="med${i}"]:checked`).value;
+        if (selectedValue === "1") {
+            totalRisk += riskWeights[i];
             selectedMeds++;
         }
     }
@@ -465,7 +476,10 @@ function calculateRisk() {
     
     // For demonstration, let's ensure we get different risk levels
     // If no high-risk meds are selected, cap the risk
-    const hasHighRiskMeds = Features[9] === 1 || Features[10] === 1 || Features[15] === 1 || Features[21] === 1;
+    const hasHighRiskMeds = document.querySelector('input[name="med10"]:checked')?.value === "1" || 
+                           document.querySelector('input[name="med11"]:checked')?.value === "1" || 
+                           document.querySelector('input[name="med16"]:checked')?.value === "1" || 
+                           document.querySelector('input[name="med22"]:checked')?.value === "1";
     if (!hasHighRiskMeds && normalizedRisk > 0.5) {
         normalizedRisk = 0.3 + Math.random() * 0.2;
     }
@@ -498,20 +512,36 @@ function initChart() {
         data: {
             labels: ["Safe", "Danger"],
             datasets: [{
-                backgroundColor: ["#00FF00", "#FF0000"],
-                data: [50, 50] // Initial placeholder data
+                backgroundColor: ["#27ae60", "#e74c3c"],
+                borderColor: ["#fff", "#fff"],
+                borderWidth: 2,
+                data: [80, 20] // Initial placeholder data
             }]
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
-            title: {
-                display: true,
-                text: "Overall Risk Percentage",
-                fontSize: 16
-            },
+            maintainAspectRatio: true,
+            cutoutPercentage: 40,
             legend: {
-                position: 'bottom'
+                position: 'bottom',
+                labels: {
+                    fontSize: 16,
+                    padding: 20,
+                    usePointStyle: true
+                }
+            },
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        const label = data.labels[tooltipItem.index] || '';
+                        const value = data.datasets[0].data[tooltipItem.index];
+                        return `${label}: ${value.toFixed(1)}%`;
+                    }
+                }
+            },
+            animation: {
+                animateScale: true,
+                animateRotate: true
             }
         }
     });
@@ -525,10 +555,22 @@ function updateChart(safeValue, dangerValue) {
 
 // Initialize when page loads
 window.onload = function() {
-    initFeatures();
     initChart();
+    
+    // Set default date to 20 years ago
+    const today = new Date();
+    const twentyYearsAgo = new Date(today.getFullYear() - 20, today.getMonth(), today.getDate());
+    document.getElementById('birthday').valueAsDate = twentyYearsAgo;
+    
+    // Set default gender
+    document.querySelector('input[name="gender"][value="male"]').checked = true;
+    
+    // Add some sample medications for demonstration
+    setTimeout(() => {
+        document.querySelector('input[name="med10"]').checked = true;
+        document.querySelector('input[name="med14"]').checked = true;
+    }, 500);
 };
 </script>
 </body>
 </html>
-
