@@ -1,3 +1,6 @@
-python 3.8
-
-scikit-learn==0.22.2
+flask
+gunicorn
+numpy
+pandas
+scikit-learn
+joblib
