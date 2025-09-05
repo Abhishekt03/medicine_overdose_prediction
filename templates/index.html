@@ -8,179 +8,10 @@
   <title>Medicine Overdose Prediction</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Poppins:300,400,500,600,700" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="../static/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="../static/vendor/aos/aos.css" rel="stylesheet">
-  <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="../static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="../static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="../static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="../static/css/style.css" rel="stylesheet">
-
   <style>
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 20px 0;
-      background-color: #fff;
-      border: 1px solid black;
-    }
-
-    th,
-    td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: left;
-    }
-
-    th {
-      background-color: #f2f2f2;
-      font-weight: bold;
-    }
-
-    td {
-      vertical-align: middle;
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- ======= Top Bar ======= -->
-  <div id="topbar" class="d-flex align-items-center fixed-top">
-    <div class="container d-flex justify-content-center justify-content-md-between">
-      <!-- Topbar content if needed -->
-    </div>
-  </div>
-
-  <!-- ======= Header / Navbar ======= -->
-  <header id="header" class="fixed-top">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-
-      <h1 class="logo me-auto me-lg-0"><a href="index.html">Medicine Overdose Prediction</a></h1>
-
-      <nav id="navbar" class="navbar navbar-expand-lg navbar-light">
-        <div class="container-fluid">
-          <!-- Toggle button for mobile -->
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link active" href="{{ url_for('first') }}">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('login') }}">Login</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-    </div>
-  </header>
-
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
-    <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
-      <div class="row">
-        <div class="col-lg-8">
-          <h1>Medicine Overdose Prediction using Machine learning</h1>
-          <div class="btns">
-            <a href="#about" class="btn-menu animated fadeInUp scrollto"></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <br><br><br>
-
-  <main id="main">
-
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container" data-aos="fade-up">
-
-        <div class="row">
-          <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
-          </div>
-          <div class="col-lg-4 ml-auto" style="margin-left:360px;">
-            <center>
-              <h3><b><u>About</u></b></h3>
-            </center>
-          </div>
-          <br><br>
-          <p>
-            Leveraging advanced data analytics and machine learning to predict and prevent medicine overdoses for improved patient safety.
-          </p>
-          <div>
-            <img src="../static/img/11.png" width="100%" height="500px" align="center">
-          </div>
-
-          <p>
-            To develop a predictive system that identifies patients at risk of medication overdose based on their medical history, prescription details, and other relevant factors. The system aims to assist healthcare providers in preventing overdoses by providing actionable insights and alerts during prescription and medication dispensation.
-          </p>
-        </div>
-
-        <br><br>
-        <div>
-          <h1>MEDICINE DETAILS</h1>
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Medication</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>NovoLog FlexPen</td>
-                <td>Indicated to improve glycemic control in adults and children with diabetes mellitus.</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Dutasteride</td>
-                <td>Used to treat symptoms of an enlarged prostate (BPH), reduces the size of the enlarged prostate.</td>
-              </tr>
-              <!-- Add the rest of the medicines here as in your original code -->
-            </tbody>
-          </table>
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ======= Footer ======= -->
-  <footer style="text-align:center; background-color:black; color:white;">
-    Copyrights © 2024. All rights reserved. Privacy Policy | Mandatory Disclosure
-  </footer>
-
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-i<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>Medicine Overdose Prediction</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-  <style>
+	  .nav-link scrollto {
+		  font-size: 250px;
+		  
     table {
       width: 100%;
       border-collapse: collapse;
@@ -199,11 +30,6 @@
   }
   td {
       vertical-align: middle;
-  }
-  
-  /* Additional style to align navbar to right */
-  .navbar-nav.ms-auto {
-    margin-left: auto;
   }
 </style>
 
@@ -251,14 +77,17 @@
   <header id="header" class="fixed-top d-flex align-items-cente">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
     
-      <h1 class="logo me-auto"><a href="index.html">Medicine Overdose Prediction</a></h1>
+      <h1 class="col-lg-8"><a href="index.html"> <span>Medicine Overdose Prediction</span></a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar order-last order-lg-0">
-        <ul class="ms-auto"> <!-- Changed: Added ms-auto class to push items right -->
+        <ul>
           <li><a class="nav-link scrollto active" href="{{ url_for('first')}}">Home</a></li>
+           
           <li><a class="nav-link scrollto" href="{{ url_for('login')}}">Login</a></li>
+		         
+        
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -447,22 +276,6 @@
 </div></div>
 <div id="preloader"></div>
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-  <!-- Vendor JS Files -->
-  <script src="../static/vendor/aos/aos.js"></script>
-  <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../static/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="../static/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="../static/vendor/php-email-form/validate.js"></script>
-  <script src="../static/vendor/swiper/swiper-bundle.min.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="../static/js/main.js"></script>
-
-</body>
-
-</html>tems-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
-
   <!-- Vendor JS Files -->
   <script src="../static/vendor/aos/aos.js"></script>
   <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
