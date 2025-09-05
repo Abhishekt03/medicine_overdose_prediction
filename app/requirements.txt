@@ -1,3 +1,0 @@
-python 3.8
-
-scikit-learn==0.22.2
