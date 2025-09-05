@@ -165,6 +165,31 @@
       color: white;
     }
     
+    .login-container {
+      background-color: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      margin-bottom: 40px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .form-control:focus {
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+    }
+    
+    .btn-primary {
+      background-color: var(--secondary-color);
+      border-color: var(--secondary-color);
+    }
+    
+    .btn-primary:hover {
+      background-color: #2980b9;
+      border-color: #2980b9;
+    }
+    
     @media (max-width: 768px) {
       .hero-section {
         padding: 60px 0;
@@ -193,9 +218,8 @@
             <a class="nav-link active" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="login.html">Login</a>
+            <a class="nav-link" href="#login">Login</a>
           </li>
-          
         </ul>
       </div>
     </div>
@@ -217,191 +241,210 @@
   <!-- Main Content -->
   <main class="container">
     <!-- About Section -->
-  <section id="about" class="mb-5">
-    <h2 class="section-title">About Our Project</h2>
-    <div class="about-content">
-      <div class="row">
-        <div class="col-md-6">
-          <p class="lead">
-            To develop a predictive system that identifies patients at risk of medication overdose based on their medical history, prescription details, and other relevant factors.
-          </p>
-          <p>
-            The system aims to assist healthcare providers in preventing overdoses by providing actionable insights and alerts during prescription and medication dispensation.
-          </p>
-        </div>
-        <div class="col-md-6">
-          <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80" alt="Medicine Safety" class="img-fluid rounded">
-        </div>
-      </div>
-    </div>
-    
-    <!-- Features -->
-    <div class="row mt-5">
-      <div class="col-md-4">
-        <div class="feature-box">
-          <div class="feature-icon">
-            <i class="fas fa-brain"></i>
+    <section id="about" class="mb-5">
+      <h2 class="section-title">About Our Project</h2>
+      <div class="about-content">
+        <div class="row">
+          <div class="col-md-6">
+            <p class="lead">
+              To develop a predictive system that identifies patients at risk of medication overdose based on their medical history, prescription details, and other relevant factors.
+            </p>
+            <p>
+              The system aims to assist healthcare providers in preventing overdoses by providing actionable insights and alerts during prescription and medication dispensation.
+            </p>
           </div>
-          <h3>AI-Powered Predictions</h3>
-          <p>Advanced machine learning algorithms analyze multiple factors to predict overdose risks accurately.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="feature-box">
-          <div class="feature-icon">
-            <i class="fas fa-shield-alt"></i>
+          <div class="col-md-6">
+            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80" alt="Medicine Safety" class="img-fluid rounded">
           </div>
-          <h3>Patient Safety</h3>
-          <p>Early warning system helps prevent medication errors and protects patient health.</p>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="feature-box">
-          <div class="feature-icon">
-            <i class="fas fa-user-md"></i>
+      
+      <!-- Features -->
+      <div class="row mt-5">
+        <div class="col-md-4">
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="fas fa-brain"></i>
+            </div>
+            <h3>AI-Powered Predictions</h3>
+            <p>Advanced machine learning algorithms analyze multiple factors to predict overdose risks accurately.</p>
           </div>
-          <h3>Clinical Decision Support</h3>
-          <p>Assists healthcare providers in making informed prescription decisions.</p>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Patient Safety</h3>
+            <p>Early warning system helps prevent medication errors and protects patient health.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="fas fa-user-md"></i>
+            </div>
+            <h3>Clinical Decision Support</h3>
+            <p>Assists healthcare providers in making informed prescription decisions.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Medicine Details Section -->
-  <section id="medicines" class="mb-5">
-    <h2 class="section-title">Medicine Details</h2>
-    <p class="text-center mb-4">Comprehensive information about medications and their potential risks</p>
-    
-    <div class="table-responsive">
-      <table class="medicines-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Medication</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>NovoLog FlexPen</td>
-            <td>Indicated to improve glycemic control in adults and children with diabetes mellitus.</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Dutasteride</td>
-            <td>Used to treat symptoms of an enlarged prostate (BPH), reduces the size of the enlarged prostate.</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Timolol</td>
-            <td>A beta blocker medication used to treat increased pressure inside the eye, such as in ocular hypertension and glaucoma.</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Omega-3 Acid Ethyl Esters</td>
-            <td>Used to treat high blood triglycerides to reduce the risk of pancreatitis, found in fish oil.</td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>Prescription for Alzheimer's</td>
-            <td>Indicates if there is a prescription for Alzheimer's disease treatment.</td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td>Prescription for Diabetes</td>
-            <td>Indicates if there is a prescription for diabetes treatment.</td>
-          </tr>
-          <tr>
-            <td>7</td>
-            <td>Travoprost</td>
-            <td>Used for high pressure inside the eye, including glaucoma, when other agents are insufficient.</td>
-          </tr>
-          <tr>
-            <td>8</td>
-            <td>Finasteride</td>
-            <td>Used to treat hair loss and benign prostatic hyperplasia in men.</td>
-          </tr>
-          <tr>
-            <td>9</td>
-            <td>History of Heart Attack</td>
-            <td>Indicates if the patient has a history of heart attacks.</td>
-          </tr>
-          <tr>
-            <td>10</td>
-            <td>Latanoprost</td>
-            <td>Treats increased pressure inside the eye, such as ocular hypertension and open angle glaucoma.</td>
-          </tr>
-          <tr>
-            <td>11</td>
-            <td>Insulin Glargine</td>
-            <td>Long-acting insulin for managing type I and type II diabetes. Used once a day via injection under the skin.</td>
-          </tr>
-          <tr>
-            <td>12</td>
-            <td>Insulin Detemir</td>
-            <td>Long-acting insulin for treating both type 1 and type 2 diabetes, injected under the skin.</td>
-          </tr>
-          <tr>
-            <td>13</td>
-            <td>Brimonidine Tartrate</td>
-            <td>Used to treat open-angle glaucoma or high fluid pressure in the eye. Lowers risk of nerve damage or vision loss.</td>
-          </tr>
-          <tr>
-            <td>14</td>
-            <td>Bimatoprost</td>
-            <td>Treats high eye pressure, including glaucoma, and may also increase eyelash size.</td>
-          </tr>
-          <tr>
-            <td>15</td>
-            <td>Cyclosporine</td>
-            <td>Immunosuppressant for treating rheumatoid arthritis, psoriasis, and other immune disorders.</td>
-          </tr>
-          <tr>
-            <td>16</td>
-            <td>Morphine Sulfate</td>
-            <td>Used to manage severe pain requiring daily, long-term opioid treatment.</td>
-          </tr>
-          <tr>
-            <td>17</td>
-            <td>Neomycin Topical</td>
-            <td>Prevents or treats skin infections caused by bacteria (not effective for fungal or viral infections).</td>
-          </tr>
-          <tr>
-            <td>18</td>
-            <td>Primidone</td>
-            <td>Barbiturate medication used to treat partial/generalized seizures and essential tremors.</td>
-          </tr>
-          <tr>
-            <td>19</td>
-            <td>Humalog</td>
-            <td>Insulin to treat type 1 and type 2 diabetes, taken around meal times via injection.</td>
-          </tr>
-          <tr>
-            <td>20</td>
-            <td>NovoLog</td>
-            <td>Manufactured insulin for type 1 and type 2 diabetes, typically taken just before meals.</td>
-          </tr>
-          <tr>
-            <td>21</td>
-            <td>Dorzolamide/Timolol</td>
-            <td>Eye drop combination for high eye pressure when a beta blocker alone isn't sufficient.</td>
-          </tr>
-          <tr>
-            <td>22</td>
-            <td>Diclofenac</td>
-            <td>Nonsteroidal anti-inflammatory drug for pain and inflammatory diseases, including gout.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-</main>
+    <!-- Login Section -->
+    <section id="login" class="mb-5">
+      <h2 class="section-title">Login</h2>
+      <div class="login-container">
+        <form id="loginForm">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" required>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" required>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+        <div id="loginMessage" class="mt-3"></div>
+      </div>
+    </section>
+
+    <!-- Medicine Details Section -->
+    <section id="medicines" class="mb-5">
+      <h2 class="section-title">Medicine Details</h2>
+      <p class="text-center mb-4">Comprehensive information about medications and their potential risks</p>
+      
+      <div class="table-responsive">
+        <table class="medicines-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Medication</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>NovoLog FlexPen</td>
+              <td>Indicated to improve glycemic control in adults and children with diabetes mellitus.</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Dutasteride</td>
+              <td>Used to treat symptoms of an enlarged prostate (BPH), reduces the size of the enlarged prostate.</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Timolol</td>
+              <td>A beta blocker medication used to treat increased pressure inside the eye, such as in ocular hypertension and glaucoma.</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Omega-3 Acid Ethyl Esters</td>
+              <td>Used to treat high blood triglycerides to reduce the risk of pancreatitis, found in fish oil.</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Prescription for Alzheimer's</td>
+              <td>Indicates if there is a prescription for Alzheimer's disease treatment.</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Prescription for Diabetes</td>
+              <td>Indicates if there is a prescription for diabetes treatment.</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Travoprost</td>
+              <td>Used for high pressure inside the eye, including glaucoma, when other agents are insufficient.</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>Finasteride</td>
+              <td>Used to treat hair loss and benign prostatic hyperplasia in men.</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>History of Heart Attack</td>
+              <td>Indicates if the patient has a history of heart attacks.</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>Latanoprost</td>
+              <td>Treats increased pressure inside the eye, such as ocular hypertension and open angle glaucoma.</td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>Insulin Glargine</td>
+              <td>Long-acting insulin for managing type I and type II diabetes. Used once a day via injection under the skin.</td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>Insulin Detemir</td>
+              <td>Long-acting insulin for treating both type 1 and type 2 diabetes, injected under the skin.</td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td>Brimonidine Tartrate</td>
+              <td>Used to treat open-angle glaucoma or high fluid pressure in the eye. Lowers risk of nerve damage or vision loss.</td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td>Bimatoprost</td>
+              <td>Treats high eye pressure, including glaucoma, and may also increase eyelash size.</td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td>Cyclosporine</td>
+              <td>Immunosuppressant for treating rheumatoid arthritis, psoriasis, and other immune disorders.</td>
+            </tr>
+            <tr>
+              <td>16</td>
+              <td>Morphine Sulfate</td>
+              <td>Used to manage severe pain requiring daily, long-term opioid treatment.</td>
+            </tr>
+            <tr>
+              <td>17</td>
+              <td>Neomycin Topical</td>
+              <td>Prevents or treats skin infections caused by bacteria (not effective for fungal or viral infections).</td>
+            </tr>
+            <tr>
+              <td>18</td>
+              <td>Primidone</td>
+              <td>Barbiturate medication used to treat partial/generalized seizures and essential tremors.</td>
+            </tr>
+            <tr>
+              <td>19</td>
+              <td>Humalog</td>
+              <td>Insulin to treat type 1 and type 2 diabetes, taken around meal times via injection.</td>
+            </tr>
+            <tr>
+              <td>20</td>
+              <td>NovoLog</td>
+              <td>Manufactured insulin for type 1 and type 2 diabetes, typically taken just before meals.</td>
+            </tr>
+            <tr>
+              <td>21</td>
+              <td>Dorzolamide/Timolol</td>
+              <td>Eye drop combination for high eye pressure when a beta blocker alone isn't sufficient.</td>
+            </tr>
+            <tr>
+              <td>22</td>
+              <td>Diclofenac</td>
+              <td>Nonsteroidal anti-inflammatory drug for pain and inflammatory diseases, including gout.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>Copyrights © 2025 Medicine Overdose Prediction. All rights reserved.</p>
+      <p>Copyrights © 2024 Medicine Overdose Prediction. All rights reserved.</p>
       <p>Privacy Policy | Mandatory Disclosure</p>
     </div>
   </footer>
@@ -430,9 +473,26 @@
         $('html, body').animate({scrollTop : 0}, 800);
         return false;
       });
+      
+      // Login form handling
+      $('#loginForm').on('submit', function(e) {
+        e.preventDefault();
+        const username = $('#username').val();
+        const password = $('#password').val();
+        
+        // Simple validation (in a real application, this would be handled server-side)
+        if (username && password) {
+          $('#loginMessage').html('<div class="alert alert-success">Login successful! Redirecting...</div>');
+          // Simulate redirect
+          setTimeout(function() {
+            window.location.href = "#about";
+          }, 1000);
+        } else {
+          $('#loginMessage').html('<div class="alert alert-danger">Please enter both username and password.</div>');
+        }
+      });
     });
   </script>
 </body>
 
 </html>
-
