@@ -2,4 +2,5 @@ flask
 gunicorn
 pandas
 numpy
-scikit-learn==0.22.2
+scikit-learn
+
