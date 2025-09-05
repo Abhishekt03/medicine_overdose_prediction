@@ -23,7 +23,7 @@ def Predict(L):
 
 @app.route("/")
 def first():
-  return render_template("first.html")
+  return render_template("index.html")
   
 @app.route("/about")
 def about():
@@ -90,4 +90,5 @@ def chart():
     return render_template('chart.html')
 
 if __name__=="__main__":
+
 	app.run(debug = True)
