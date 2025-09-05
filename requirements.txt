@@ -1,3 +1,5 @@
-python 3.8
-
+flask
+gunicorn
+pandas
+numpy
 scikit-learn==0.22.2
