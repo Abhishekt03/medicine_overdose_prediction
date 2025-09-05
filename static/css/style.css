@@ -5,6 +5,7 @@
 * License: https://bootstrapmade.com/license/
 */
 
+
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
@@ -112,10 +113,11 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0;
   display: flex;
   list-style: none;
-  align-items: center;
+  align-items: right;
 }
 .navbar li {
   position: relative;
+  s
 }
 .navbar a, .navbar a:focus {
   display: flex;
