@@ -5,37 +5,29 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Medicine Overdose Prediction</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title>Login | Medicine Overdose Prediction</title>
 
   <!-- Favicons -->
   <link href="{{ url_for('static', filename='img/favicon.png') }}" rel="icon">
   <link href="{{ url_for('static', filename='img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto|Poppins" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="{{ url_for('static', filename='vendor/animate.css/animate.min.css') }}" rel="stylesheet">
-  <link href="{{ url_for('static', filename='vendor/aos/aos.css') }}" rel="stylesheet">
   <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/aos/aos.css') }}" rel="stylesheet">
   <link href="{{ url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-  <link href="{{ url_for('static', filename='vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
-  <link href="{{ url_for('static', filename='vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-  <link href="{{ url_for('static', filename='vendor/remixicon/remixicon.css') }}" rel="stylesheet">
-  <link href="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="{{ url_for('static', filename='css/style4.css') }}" rel="stylesheet">
 </head>
 
 <body>
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-cente">
+  <!-- Header -->
+  <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
-      <h1 class="col-lg-8"><a href="{{ url_for('first') }}"> <span>Medicine Overdose Prediction</span></a></h1>
-
+      <h1 class="col-lg-8"><a href="{{ url_for('first') }}">Medicine Overdose Prediction</a></h1>
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
           <li><a class="nav-link scrollto" href="{{ url_for('first')}}">Home</a></li>
@@ -45,73 +37,112 @@
       </nav>
     </div>
   </header>
-  <!-- End Header -->
 
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
-    <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
-      <div class="row">
-        <div class="col-lg-8">
-          <h1><span>Medicine Overdose Prediction through Machine Learning Approaches</span></h1>
-        </div>
-      </div>
+  <!-- Hero Section -->
+  <section id="hero" class="d-flex align-items-center" style="min-height: 50vh;">
+    <div class="container text-center" data-aos="zoom-in" data-aos-delay="100">
+      <h1>Login to Access Your Account</h1>
+      <p>Enter your credentials to continue</p>
     </div>
-  </section> 
+  </section>
 
+  <!-- Login Form Section -->
   <main id="main">
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
+    <section id="login" class="py-5">
       <div class="container" data-aos="fade-up">
-        <div class="row">
-          <div class="col-lg-4 ml-auto" style="margin-left:360px;">
-            <center><h2>Preview</h2></center>
-          </div>
-        </div>
-      </div>
-    </section>
+        <div class="row justify-content-center">
+          <div class="col-md-6 col-lg-5">
+            <div class="card shadow-sm p-4">
+              <h3 class="text-center mb-3"><i class="fas fa-sign-in-alt me-2"></i>Login</h3>
 
-    <!-- Preview Section -->
-    <section id="preview" class="page-section">
-      <div class="container">
-        <div class="row" style="margin-left:-250px">
-          <div class="col-lg-8 mx-auto">
-            {{ df_view.to_html(classes="table striped",na_rep="-") | safe }}
-          </div>
-        </div>
+              <form id="loginForm">
+                <div class="mb-3">
+                  <label for="username" class="form-label"><strong>Username</strong></label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
+                  </div>
+                </div>
 
-        <div class="form-group" style="padding:0px 250px 10px 40px;height:200px">
-          <input style="margin-left:200px" type="button" onclick="hideLoader()" class="btn btn-primary" value="Click to Train | Test" />
-          <div id="loading" style="display:none;"></div>
+                <div class="mb-4">
+                  <label for="password" class="form-label"><strong>Password</strong></label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+                  </div>
+                </div>
+
+                <div class="d-grid mb-3">
+                  <button type="button" class="btn btn-primary" onclick="login()"><i class="fas fa-sign-in-alt me-2"></i>Login</button>
+                </div>
+
+                <div class="text-center">
+                  <a href="#" class="text-decoration-none">Forgot password?</a>
+                </div>
+              </form>
+
+              <div id="loginAlert" class="mt-3"></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="container">
-      <div class="copyright"></div>
-      <div class="credits"></div>
+  <!-- Footer -->
+  <footer id="footer" class="mt-5">
+    <div class="container text-center">
+      <p>© 2025 Medicine Overdose Prediction</p>
     </div>
   </footer>
-  
-  <!-- JS -->
+
+  <!-- JS Files -->
   <script src="{{ url_for('static', filename='vendor/aos/aos.js') }}"></script>
   <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='vendor/glightbox/js/glightbox.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-
-  <!-- Loader -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script>
-    function hideLoader() {  
-      $('#loading').show(0).delay(10000).hide(0,function(){
-        alert("Training finished!");
-        window.location = "{{ url_for('home') }}";
-      });    
+    AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
+
+    const validCredentials = {
+      "satish": "1234",
+      "abhi": "hello",
+      "savitri": "234"
+    };
+
+    function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (!username || !password) {
+        showAlert("Please enter both username and password.", "danger");
+        return;
+      }
+
+      if (validCredentials[username] === password) {
+        showAlert("Login successful! Redirecting...", "success");
+        setTimeout(() => {
+          window.location = "{{ url_for('upload') }}";
+        }, 1500);
+      } else {
+        showAlert("Invalid username or password.", "danger");
+      }
     }
+
+    function showAlert(message, type) {
+      const alertDiv = document.getElementById("loginAlert");
+      alertDiv.innerHTML = `
+        <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+          ${message}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>`;
+      setTimeout(() => { alertDiv.innerHTML = ""; }, 5000);
+    }
+
+    document.getElementById("password").addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        login();
+      }
+    });
   </script>
 </body>
 </html>
