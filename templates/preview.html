@@ -13,34 +13,215 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto|Poppins" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="../static/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="../static/vendor/aos/aos.css" rel="stylesheet">
-  <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="../static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="../static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="../static/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="../static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="../static/css/style4.css" rel="stylesheet">
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
+    :root {
+      --primary-color: #94c045;
+      --secondary-color: #3c4133;
+      --accent-color: #aacd6b;
+      --light-bg: #f8f9fa;
+      --dark-text: #333;
+    }
+    
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: #444444;
+      background-color: var(--light-bg);
+      padding-top: 80px;
+    }
+    
+    /* Header Styles */
+    #header {
+      height: 70px;
+      background: #fff;
+      box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 997;
+    }
+    
+    #header h1 a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 24px;
+    }
+    
+    .navbar {
+      padding: 0;
+    }
+    
+    .navbar ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      list-style: none;
+      align-items: center;
+    }
+    
+    .navbar li {
+      position: relative;
+    }
+    
+    .navbar a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 15px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #565e49;
+      white-space: nowrap;
+      transition: 0.3s;
+    }
+    
+    .navbar a:hover, .navbar .active {
+      color: var(--primary-color);
+    }
+    
+    /* Hero Section */
+    #hero {
+      width: 100%;
+      height: 40vh;
+      background: linear-gradient(rgba(60, 65, 51, 0.7), rgba(60, 65, 51, 0.7)), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center center;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    #hero h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* Preview Section */
+    #preview {
+      padding: 40px 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      padding-bottom: 30px;
+    }
+    
+    .section-title h2 {
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--secondary-color);
+    }
+    
+    /* Table Styles */
+    .table-container {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+    
+    .table-responsive {
+      max-height: 500px;
+      overflow-y: auto;
+    }
+    
+    .table {
+      margin-bottom: 0;
+      width: 100%;
+    }
+    
+    .table th {
+      background-color: var(--primary-color);
+      color: white;
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+    }
+    
+    .table-striped tbody tr:nth-of-type(odd) {
+      background-color: rgba(148, 192, 69, 0.05);
+    }
+    
+    .table-hover tbody tr:hover {
+      background-color: rgba(148, 192, 69, 0.1);
+    }
+    
+    /* Button Styles */
+    .btn-primary {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+      padding: 12px 30px;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s;
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--accent-color);
+      border-color: var(--accent-color);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(148, 192, 69, 0.3);
+    }
+    
+    /* Loader Styles */
     #loading {
-      background: url('../static/ajax-loader.gif') no-repeat center center;
-      position: absolute;
+      background: rgba(255, 255, 255, 0.9) url('../static/ajax-loader.gif') no-repeat center center;
+      position: fixed;
       top: 0;
       left: 0;
       height: 100%;
       width: 100%;
-      z-index: 9999999;
+      z-index: 9999;
       display: none;
     }
-
-    body {
-      background-color: #f8f9fa;
+    
+    /* Footer */
+    #footer {
+      background-color: var(--secondary-color);
+      color: white;
+      padding: 30px 0;
+      margin-top: 60px;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      #hero h1 {
+        font-size: 2rem;
+      }
+      
+      .navbar ul {
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 200px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        display: none;
+        z-index: 999;
+      }
+      
+      .navbar ul.show {
+        display: flex;
+      }
+      
+      .table-responsive {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
@@ -49,47 +230,54 @@
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
-      <h1 class="col-lg-8"><a href="{{ url_for('first') }}">Medicine Overdose Prediction</a></h1>
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+      <h1 class="me-auto"><a href="{{ url_for('first') }}">Medicine Overdose Prediction</a></h1>
+      
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="nav-link scrollto" href="{{ url_for('first') }}">Home</a></li>
-          <li><a class="nav-link scrollto" href="{{ url_for('home') }}">Prediction</a></li>
-          <li><a class="nav-link scrollto" href="{{ url_for('precautions') }}">Precautions</a></li>
+          <li><a class="nav-link" href="{{ url_for('first') }}"><i class="fas fa-home me-2"></i>Home</a></li>
+          <li><a class="nav-link" href="{{ url_for('home') }}"><i class="fas fa-brain me-2"></i>Prediction</a></li>
+          <li><a class="nav-link" href="{{ url_for('precautions') }}"><i class="fas fa-shield-alt me-2"></i>Precautions</a></li>
         </ul>
+        <i class="mobile-nav-toggle d-lg-none"><i class="fas fa-bars"></i></i>
       </nav>
     </div>
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
-    <div class="container text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
+    <div class="container text-center" data-aos="zoom-in" data-aos-delay="100">
       <h1><span>Medicine Overdose Prediction through Machine Learning Approaches</span></h1>
     </div>
   </section>
-  <br><br><br>
 
   <main id="main">
     <!-- ======= Preview Section ======= -->
     <section id="preview" class="about">
       <div class="container" data-aos="fade-up">
-        <div class="row">
-          <div class="col-lg-12 text-center mb-4">
-            <h2>Preview Dataset</h2>
-          </div>
+        <div class="section-title">
+          <h2>Preview Dataset</h2>
+          <p>Review the dataset before training the machine learning model</p>
         </div>
 
         <div class="row justify-content-center">
-          <div class="col-lg-10">
-            <!-- Display the DataFrame as HTML table -->
-            {{ df_view.to_html(classes="table table-striped table-bordered", na_rep="-") | safe }}
+          <div class="col-lg-12">
+            <div class="table-container">
+              <div class="table-responsive">
+                <!-- Display the DataFrame as HTML table -->
+                {{ df_view.to_html(classes="table table-striped table-bordered table-hover", na_rep="-") | safe }}
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- Train | Test Button -->
-        <div class="form-group text-center mt-4">
-          <input type="button" onclick="showLoader()" class="btn btn-primary btn-lg" value="Click to Train | Test" />
+        <div class="text-center mt-5">
+          <button onclick="showLoader()" class="btn btn-primary btn-lg">
+            <i class="fas fa-cogs me-2"></i>Click to Train | Test
+          </button>
         </div>
+        
         <div id="loading"></div>
 
       </div>
@@ -99,29 +287,39 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="mt-5">
     <div class="container text-center">
-      <p>© 2025 Medicine Overdose Prediction</p>
+      <p>© 2025 Medicine Overdose Prediction. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- Vendor JS Files -->
-  <script src="../static/vendor/aos/aos.js"></script>
-  <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../static/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="../static/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="../static/vendor/swiper/swiper-bundle.min.js"></script>
+  <!-- Bootstrap & jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Template Main JS File -->
-  <script src="../static/js/main.js"></script>
-
-  <!-- Loader JS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <!-- Custom Script -->
   <script>
+    // Mobile navigation toggle
+    document.querySelector('.mobile-nav-toggle').addEventListener('click', function() {
+      document.querySelector('.navbar ul').classList.toggle('show');
+    });
+    
+    // Show loader function
     function showLoader() {
-      $('#loading').show(0).delay(10000).hide(0, function () {
-        alert("Training finished!");
+      $('#loading').show();
+      
+      // Simulate training process (replace with actual AJAX call to your backend)
+      setTimeout(function() {
+        $('#loading').hide();
+        alert("Training finished! Redirecting to prediction page.");
         window.location = "{{ url_for('home') }}";
-      });
+      }, 3000); // 3 seconds for demo, adjust as needed
     }
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.navbar a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        document.querySelector('.navbar ul').classList.remove('show');
+      });
+    });
   </script>
 </body>
 
