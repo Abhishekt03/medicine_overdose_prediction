@@ -12,7 +12,7 @@
   <link href="../static/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto|Poppins" rel="stylesheet">
   
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -48,29 +48,13 @@
       z-index: 997;
     }
     
-    .header-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-      height: 70px;
-    }
-    
-    .logo h1 {
-      font-size: 28px;
-      margin: 0;
-      line-height: 0;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-    
-    .logo h1 a, .logo h1 a:hover {
+    #header h1 a {
       color: var(--secondary-color);
       text-decoration: none;
+      font-weight: 700;
+      font-size: 24px;
     }
-
+    
     .navbar {
       padding: 0;
     }
@@ -87,12 +71,12 @@
       position: relative;
     }
     
-    .navbar a, .navbar a:focus {
+    .navbar a {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 10px 15px;
-      font-family: "Poppins", sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 15px;
       font-weight: 600;
       color: #565e49;
@@ -100,25 +84,10 @@
       transition: 0.3s;
     }
     
-    .navbar a i, .navbar a:focus i {
-      font-size: 12px;
-      line-height: 0;
-      margin-left: 5px;
-    }
-    
-    .navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
+    .navbar a:hover, .navbar .active {
       color: var(--primary-color);
     }
     
-    .mobile-nav-toggle {
-      display: none;
-      color: var(--secondary-color);
-      font-size: 28px;
-      cursor: pointer;
-      line-height: 0;
-      transition: 0.5s;
-    }
-
     /* Hero Section */
     #hero {
       width: 100%;
@@ -208,19 +177,9 @@
       box-shadow: 0 4px 15px rgba(148, 192, 69, 0.3);
     }
     
-    /* Status Alert */
-    .status-alert {
-      display: none;
-      position: fixed;
-      top: 100px;
-      right: 20px;
-      z-index: 9999;
-      max-width: 350px;
-    }
-    
     /* Loader Styles */
     #loading {
-      background: rgba(255, 255, 255, 0.9) url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzgiIGhlaWdodD0iMzgiIHZpZXdCb3g9IjAgMCAzOCAzOCIgc3Ryb2tlPSIjOTRjMDQ1IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IHgxPSI4LjA0MiUiIHkxPSIwJSIgeDI9IjY1LjY4MiUiIHkyPSIyMy44NjUlIiBpZD0iYSI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiM5NGMwNDUiIHN0b3Atb3BhY2l0eT0iMCIgb2Zmc2V0PSIwJSIvPgogICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjOTRjMDQ1IiBzdG9wLW9wYWNpdHk9Ii42MzIiIG9mZnNldD0iNjMuMTQ2JSIvPgogICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjOTRjMDQ1IiBvZmZzZXQ9IjEwMCUiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxIDEpIj4KICAgICAgPHBhdGggZD0iTTM2IDE4YzAtOS45NC04LjA2LTE4LTE4LTE4IiBpZD0iT3ZhbC0yIiBzdHJva2U9InVybCgjYSkiIHN0cm9rZS13aWR0aD0iMiI+CiAgICAgICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIGZyb209IjAgMTggMTgiIHRvPSIzNjAgMTggMTgiIGR1cj0iMC45cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz4KICAgICAgPC9wYXRoPgogICAgICA8Y2lyY2xlIGZpbGw9IiM5NGMwNDUiIGN4PSIzNiIgY3k9IjE4IiByPSIxIj4KICAgICAgICA8YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJmaWxsIiB2YWx1ZXM9IiM5NGMwNDU7I2FhY2Q2YjsjOTRjMDQ1IiBkdXI9IjAuOXMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIi8+CiAgICAgIDwvY2lyY2xlPgogICAgPC9nPgogIDwvZz4KPC9zdmc+') no-repeat center center;
+      background: rgba(255, 255, 255, 0.9) url('../static/ajax-loader.gif') no-repeat center center;
       position: fixed;
       top: 0;
       left: 0;
@@ -239,19 +198,20 @@
     }
     
     /* Responsive Styles */
-    @media (max-width: 991px) {
-      .mobile-nav-toggle {
-        display: block;
+    @media (max-width: 768px) {
+      #hero h1 {
+        font-size: 2rem;
       }
       
       .navbar ul {
-        display: none;
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background: rgba(0, 0, 0, 0.9);
-        width: 200px;
         flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 200px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        display: none;
         z-index: 999;
       }
       
@@ -259,32 +219,8 @@
         display: flex;
       }
       
-      #hero h1 {
-        font-size: 2rem;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      #hero {
-        height: 30vh;
-      }
-      
-      #hero h1 {
-        font-size: 1.8rem;
-      }
-      
-      .logo h1 {
-        font-size: 20px;
-      }
-      
       .table-responsive {
         font-size: 14px;
-      }
-      
-      .status-alert {
-        right: 10px;
-        left: 10px;
-        max-width: none;
       }
     }
   </style>
@@ -294,44 +230,34 @@
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
-    <div class="header-container">
-      <div class="logo me-auto">
-        <h1><a href="/">Medicine Overdose Prediction</a></h1>
-      </div>
-
-      <nav id="navbar" class="navbar">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+      <h1 class="me-auto"><a href="{{ url_for('first') }}">Medicine Overdose Prediction</a></h1>
+      
+      <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="nav-link" href="/"><i class="fas fa-home me-2"></i>Home</a></li>
-          <li><a class="nav-link" href="/prediction"><i class="fas fa-brain me-2"></i>Prediction</a></li>
-          <li><a class="nav-link active" href="#"><i class="fas fa-table me-2"></i>Preview</a></li>
-          <li><a class="nav-link" href="/precautions"><i class="fas fa-shield-alt me-2"></i>Precautions</a></li>
+          <li><a class="nav-link" href="{{ url_for('first') }}"><i class="fas fa-home me-2"></i>Home</a></li>
+          <li><a class="nav-link" href="{{ url_for('home') }}"><i class="fas fa-brain me-2"></i>Prediction</a></li>
+          <li><a class="nav-link" href="{{ url_for('precautions') }}"><i class="fas fa-shield-alt me-2"></i>Precautions</a></li>
         </ul>
-        <i class="mobile-nav-toggle"><i class="fas fa-bars"></i></i>
+        <i class="mobile-nav-toggle d-lg-none"><i class="fas fa-bars"></i></i>
       </nav>
     </div>
   </header><!-- End Header -->
 
-  <!-- Status Alert -->
-  <div class="alert alert-danger status-alert" role="alert">
-    <i class="fas fa-exclamation-triangle me-2"></i>
-    <span id="alert-message">Connection error. Please try again.</span>
-  </div>
-
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
-    <div class="container text-center">
-      <h1><span>Dataset Preview</span></h1>
-      <p class="text-white mt-3">Review the dataset before training the machine learning model</p>
+    <div class="container text-center" data-aos="zoom-in" data-aos-delay="100">
+      <h1><span>Medicine Overdose Prediction through Machine Learning Approaches</span></h1>
     </div>
   </section>
 
   <main id="main">
     <!-- ======= Preview Section ======= -->
     <section id="preview" class="about">
-      <div class="container">
+      <div class="container" data-aos="fade-up">
         <div class="section-title">
-          <h2>Dataset Preview</h2>
-          <p>This is a preview of the dataset that will be used for training the model</p>
+          <h2>Preview Dataset</h2>
+          <p>Review the dataset before training the machine learning model</p>
         </div>
 
         <div class="row justify-content-center">
@@ -339,33 +265,16 @@
             <div class="table-container">
               <div class="table-responsive">
                 <!-- Display the DataFrame as HTML table -->
-                {% if df_view %}
-                  {{ df_view.to_html(classes="table table-striped table-bordered table-hover", na_rep="-") | safe }}
-                {% else %}
-                  <div class="text-center p-5">
-                    <i class="fas fa-exclamation-circle text-warning mb-3" style="font-size: 3rem;"></i>
-                    <h4>Data Not Available</h4>
-                    <p>Unable to load dataset preview. Please check your connection and try again.</p>
-                    <button class="btn btn-primary mt-3" onclick="window.location.reload()">
-                      <i class="fas fa-redo me-2"></i>Retry
-                    </button>
-                  </div>
-                {% endif %}
+                {{ df_view.to_html(classes="table table-striped table-bordered table-hover", na_rep="-") | safe }}
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Info Box -->
-        <div class="alert alert-info mt-4">
-          <h5><i class="fas fa-info-circle me-2"></i>About This Dataset</h5>
-          <p class="mb-0">This dataset contains information about various medications and their properties. The machine learning model will use this data to predict potential overdose risks.</p>
-        </div>
-
         <!-- Train | Test Button -->
         <div class="text-center mt-5">
-          <button onclick="startTraining()" class="btn btn-primary btn-lg">
-            <i class="fas fa-cogs me-2"></i>Train & Test Model
+          <button onclick="showLoader()" class="btn btn-primary btn-lg">
+            <i class="fas fa-cogs me-2"></i>Click to Train | Test
           </button>
         </div>
         
@@ -382,7 +291,7 @@
     </div>
   </footer>
 
-  <!-- jQuery and Bootstrap JS -->
+  <!-- Bootstrap & jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -393,75 +302,22 @@
       document.querySelector('.navbar ul').classList.toggle('show');
     });
     
+    // Show loader function
+    function showLoader() {
+      $('#loading').show();
+      
+      // Simulate training process (replace with actual AJAX call to your backend)
+      setTimeout(function() {
+        $('#loading').hide();
+        alert("Training finished! Redirecting to prediction page.");
+        window.location = "{{ url_for('home') }}";
+      }, 3000); // 3 seconds for demo, adjust as needed
+    }
+    
     // Close mobile menu when clicking on a link
     document.querySelectorAll('.navbar a').forEach(function(link) {
       link.addEventListener('click', function() {
         document.querySelector('.navbar ul').classList.remove('show');
-      });
-    });
-    
-    // Show status alert
-    function showAlert(message, type = 'danger') {
-      const alert = document.querySelector('.status-alert');
-      alert.querySelector('#alert-message').textContent = message;
-      alert.className = `alert alert-${type} status-alert`;
-      alert.style.display = 'block';
-      
-      setTimeout(() => {
-        alert.style.display = 'none';
-      }, 5000);
-    }
-    
-    // Start training process
-    function startTraining() {
-      $('#loading').show();
-      
-      // Try to connect to the training endpoint
-      fetch('/train', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Server responded with error: ' + response.status);
-        }
-        return response.json();
-      })
-      .then(data => {
-        $('#loading').hide();
-        if (data.success) {
-          showAlert('Training completed successfully! Redirecting to prediction page.', 'success');
-          setTimeout(() => {
-            window.location.href = '/prediction';
-          }, 2000);
-        } else {
-          showAlert('Training failed: ' + (data.message || 'Unknown error'));
-        }
-      })
-      .catch(error => {
-        $('#loading').hide();
-        showAlert('Connection error: ' + error.message + '. Please check if the server is running.');
-        console.error('Error:', error);
-      });
-    }
-    
-    // Check server status on page load
-    document.addEventListener('DOMContentLoaded', function() {
-      // Test connection to home endpoint
-      fetch('/home', {
-        method: 'HEAD',
-        cache: 'no-cache'
-      })
-      .then(response => {
-        if (!response.ok) {
-          showAlert('Server connection issue detected. Some features may not work properly.');
-        }
-      })
-      .catch(error => {
-        console.error('Connection test failed:', error);
-        showAlert('Cannot connect to server. Please check your connection and try again.');
       });
     });
   </script>
