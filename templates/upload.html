@@ -1,45 +1,471 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block body %}
-<section id="hero" class="d-flex align-items-center" style="min-height: 40vh;">
-  <div class="container text-center" data-aos="zoom-in" data-aos-delay="100">
-    <h1>Upload Your Dataset</h1>
-    <p>Upload a CSV file to preview and start prediction</p>
-  </div>
-</section>
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<main id="main">
-  <section id="upload" class="py-5">
-    <div class="container" data-aos="fade-up">
-      <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-5">
-          <div class="card shadow-sm p-4">
-            <h3 class="text-center mb-4"><i class="fas fa-upload me-2"></i>Upload Dataset</h3>
+  <title>Medicine Overdose Prediction | Upload</title>
 
-            <form action="{{ url_for('preview') }}" method="post" enctype="multipart/form-data">
-              <div class="mb-3">
-                <label for="datasetfile" class="form-label"><strong>Select CSV File</strong></label>
-                <input type="file" class="form-control" id="datasetfile" name="datasetfile" required>
+  <!-- Favicons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary-color: #94c045;
+      --secondary-color: #3c4133;
+      --accent-color: #aacd6b;
+      --light-bg: #f8f9fa;
+      --dark-text: #333;
+    }
+    
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: #444444;
+      background-color: var(--light-bg);
+      padding-top: 80px;
+    }
+    
+    /* Header Styles */
+    #header {
+      height: 70px;
+      background: #fff;
+      box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 997;
+    }
+    
+    #header h1 a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 24px;
+    }
+    
+    .navbar {
+      padding: 0;
+    }
+    
+    .navbar ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      list-style: none;
+      align-items: center;
+    }
+    
+    .navbar li {
+      position: relative;
+    }
+    
+    .navbar a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 15px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #565e49;
+      white-space: nowrap;
+      transition: 0.3s;
+    }
+    
+    .navbar a:hover, .navbar .active {
+      color: var(--primary-color);
+    }
+    
+    /* Hero Section */
+    #hero {
+      width: 100%;
+      height: 40vh;
+      background: linear-gradient(rgba(60, 65, 51, 0.7), rgba(60, 65, 51, 0.7)), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center center;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    #hero h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    #hero p {
+      color: #fff;
+      font-size: 1.2rem;
+      margin-top: 15px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* Upload Section */
+    #upload {
+      padding: 40px 0;
+    }
+    
+    .card {
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    }
+    
+    .form-label {
+      font-weight: 600;
+      color: var(--secondary-color);
+    }
+    
+    .form-control {
+      padding: 12px 15px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      transition: all 0.3s;
+    }
+    
+    .form-control:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 0.25rem rgba(148, 192, 69, 0.25);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      border: none;
+      padding: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+    
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(148, 192, 69, 0.3);
+    }
+    
+    /* File upload custom styling */
+    .file-upload-wrapper {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    
+    .file-upload-label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+      background-color: #f9fafb;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .file-upload-label:hover {
+      border-color: var(--primary-color);
+      background-color: rgba(148, 192, 69, 0.05);
+    }
+    
+    .file-upload-icon {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+    }
+    
+    .file-upload-text {
+      text-align: center;
+    }
+    
+    .file-upload-text h4 {
+      color: var(--secondary-color);
+      margin-bottom: 8px;
+    }
+    
+    .file-upload-text p {
+      color: #6c757d;
+      margin-bottom: 0;
+    }
+    
+    #file-name {
+      margin-top: 10px;
+      font-weight: 500;
+      color: var(--primary-color);
+    }
+    
+    /* Requirements section */
+    .requirements {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 30px;
+    }
+    
+    .requirements h5 {
+      color: var(--secondary-color);
+      margin-bottom: 15px;
+    }
+    
+    .requirements ul {
+      padding-left: 20px;
+      margin-bottom: 0;
+    }
+    
+    .requirements li {
+      margin-bottom: 8px;
+      color: #6c757d;
+    }
+    
+    /* Preview table */
+    .table-responsive {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+    
+    .table {
+      margin-bottom: 0;
+    }
+    
+    .table th {
+      background-color: var(--primary-color);
+      color: white;
+      font-weight: 600;
+    }
+    
+    .table-striped tbody tr:nth-of-type(odd) {
+      background-color: rgba(148, 192, 69, 0.05);
+    }
+    
+    /* Footer */
+    #footer {
+      background-color: var(--secondary-color);
+      color: white;
+      padding: 30px 0;
+      margin-top: 60px;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      #hero h1 {
+        font-size: 2rem;
+      }
+      
+      .navbar ul {
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 200px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        display: none;
+        z-index: 999;
+      }
+      
+      .navbar ul.show {
+        display: flex;
+      }
+    }
+    
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.5s ease-out;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+      <h1 class="me-auto"><a href="/">Medicine Overdose Prediction</a></h1>
+      
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link" href="/"><i class="fas fa-home me-2"></i>Home</a></li>
+          <li><a class="nav-link" href="/prediction"><i class="fas fa-brain me-2"></i>Prediction</a></li>
+          <li><a class="nav-link" href="/precautions"><i class="fas fa-shield-alt me-2"></i>Precautions</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-lg-none"><i class="fas fa-bars"></i></i>
+      </nav>
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container text-center" data-aos="zoom-in" data-aos-delay="100">
+      <h1>Upload Your Dataset</h1>
+      <p>Upload a CSV file to preview and start prediction</p>
+    </div>
+  </section>
+
+  <main id="main">
+    <section id="upload" class="py-5">
+      <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="card shadow-sm p-4 mb-5 fade-in">
+              <h3 class="text-center mb-4"><i class="fas fa-upload me-2"></i>Upload Dataset</h3>
+
+              <form action="/preview" method="post" enctype="multipart/form-data" id="uploadForm">
+                <div class="file-upload-wrapper">
+                  <input type="file" id="datasetfile" name="datasetfile" accept=".csv" required hidden>
+                  <label for="datasetfile" class="file-upload-label">
+                    <div class="file-upload-icon">
+                      <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <div class="file-upload-text">
+                      <h4>Drag & Drop your CSV file</h4>
+                      <p>or click to browse</p>
+                    </div>
+                  </label>
+                  <div id="file-name" class="text-center"></div>
+                </div>
+                
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="fas fa-upload me-2"></i>Upload & Preview
+                  </button>
+                </div>
+              </form>
+
+              <div class="requirements">
+                <h5><i class="fas fa-info-circle me-2"></i>File Requirements</h5>
+                <ul>
+                  <li>Only CSV files are accepted</li>
+                  <li>File should contain appropriate headers</li>
+                  <li>Ensure data is clean and properly formatted</li>
+                  <li>Maximum file size: 10MB</li>
+                </ul>
               </div>
-              <div class="d-grid">
-                <button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-upload me-2"></i>Upload</button>
-              </div>
-            </form>
+            </div>
 
             {% if df_view %}
-            <div class="mt-4">
-              <h5 class="text-center">Preview of Dataset</h5>
+            <div class="card shadow-sm p-4 fade-in">
+              <h4 class="text-center mb-4"><i class="fas fa-table me-2"></i>Dataset Preview</h4>
               <div class="table-responsive">
                 {{ df_view.to_html(classes="table table-striped", na_rep="-") | safe }}
               </div>
+              <div class="text-center mt-4">
+                <a href="/train" class="btn btn-primary btn-lg">
+                  <i class="fas fa-cogs me-2"></i>Proceed to Training
+                </a>
+              </div>
             </div>
             {% endif %}
-
           </div>
         </div>
       </div>
-    </div>
-  </section>
-</main>
+    </section>
+  </main>
 
-{% endblock %}
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="mt-5">
+    <div class="container text-center">
+      <p>© 2023 Medicine Overdose Prediction. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap & jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Mobile navigation toggle
+    document.querySelector('.mobile-nav-toggle').addEventListener('click', function() {
+      document.querySelector('.navbar ul').classList.toggle('show');
+    });
+    
+    // File upload name display
+    document.getElementById('datasetfile').addEventListener('change', function(e) {
+      const fileName = e.target.files[0].name;
+      document.getElementById('file-name').textContent = `Selected file: ${fileName}`;
+    });
+    
+    // Drag and drop functionality
+    const fileInput = document.getElementById('datasetfile');
+    const dropArea = document.querySelector('.file-upload-label');
+    
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+      dropArea.addEventListener(eventName, preventDefaults, false);
+    });
+    
+    function preventDefaults(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropArea.addEventListener(eventName, highlight, false);
+    });
+    
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropArea.addEventListener(eventName, unhighlight, false);
+    });
+    
+    function highlight() {
+      dropArea.style.borderColor = 'var(--primary-color)';
+      dropArea.style.backgroundColor = 'rgba(148, 192, 69, 0.1)';
+    }
+    
+    function unhighlight() {
+      dropArea.style.borderColor = '#ccc';
+      dropArea.style.backgroundColor = '#f9fafb';
+    }
+    
+    dropArea.addEventListener('drop', handleDrop, false);
+    
+    function handleDrop(e) {
+      const dt = e.dataTransfer;
+      const files = dt.files;
+      fileInput.files = files;
+      
+      const fileName = files[0].name;
+      document.getElementById('file-name').textContent = `Selected file: ${fileName}`;
+    }
+    
+    // Form validation
+    document.getElementById('uploadForm').addEventListener('submit', function(e) {
+      const fileInput = document.getElementById('datasetfile');
+      if (!fileInput.value) {
+        e.preventDefault();
+        alert('Please select a CSV file to upload.');
+        return false;
+      }
+      
+      const fileExtension = fileInput.value.split('.').pop().toLowerCase();
+      if (fileExtension !== 'csv') {
+        e.preventDefault();
+        alert('Please upload a valid CSV file.');
+        return false;
+      }
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.navbar a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        document.querySelector('.navbar ul').classList.remove('show');
+      });
+    });
+  </script>
+</body>
+
+</html>
