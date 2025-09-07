@@ -131,6 +131,8 @@ def upload():
 
 @app.route("/preview", methods=["GET"])
 def preview():
+    print("Session at preview:", dict(session))   # ✅ debug log
+    
     if 'uploaded_file' not in session:
         flash('No file uploaded. Please upload a file first.', 'error')
         return redirect(url_for('upload'))
@@ -140,8 +142,6 @@ def preview():
     row_count = session.get('row_count', 0)
     preview_data = session.get('preview_data', [])
 
-    print("Session at preview:", dict(session))
-    
     return render_template("preview.html", 
                           filename=filename,
                           columns=columns,
@@ -155,4 +155,5 @@ def chart():
 # ----------------- Run -----------------
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
+
 
