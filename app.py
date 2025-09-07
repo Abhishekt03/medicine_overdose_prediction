@@ -5,7 +5,6 @@ import pandas as pd
 import os
 import uuid
 from werkzeug.utils import secure_filename
-from flask_session import Session   # ✅ new import for persistent session
 
 # ML models (imported but not directly used here)
 from sklearn.ensemble import RandomForestClassifier, StackingClassifier
@@ -13,9 +12,9 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 
 app = Flask(__name__)
+app.secret_key = 'your-secret-key-here'  # Add a secret key for session management
 
-# ----------------- Configuration -----------------
-app.secret_key = os.urandom(24)   # ✅ secure random secret key
+# Configuration
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'csv'}
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB
@@ -23,24 +22,21 @@ MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = MAX_FILE_SIZE
 
-# ✅ Use filesystem session (important for Render)
-app.config["SESSION_TYPE"] = "filesystem"
-Session(app)
-
 # Create upload directory if it doesn't exist
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
-# ----------------- Helpers -----------------
 def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+# ----------------- Prediction Function -----------------
 def Predict(L):
-    filename = 'finalized_model.sav'   # Ensure this file exists in same folder as app.py
+    filename = 'finalized_model.sav'   # Make sure this file is in same folder as app.py
     loaded_model = pickle.load(open(filename, 'rb'))
     P = loaded_model.predict_proba(np.array([L]))
     print(P)
-    print("Model Loaded Successfully")
+    print("Loaded Successfully")
     return P
 
 # ----------------- Routes -----------------
@@ -60,9 +56,7 @@ def precautions():
 def home():
     return render_template("home.html")
 
-# ✅ fixed route (both /Prediction and /prediction work)
 @app.route("/Prediction", methods=["GET", "POST"])
-@app.route("/prediction", methods=["GET", "POST"])
 def Samples():
     if request.method == "POST":
         data = request.json
@@ -87,39 +81,40 @@ def login():
 @app.route("/upload", methods=["GET", "POST"])
 def upload():
     if request.method == 'POST':
+        # Check if the post request has the file part
         if 'datasetfile' not in request.files:
             flash('No file part', 'error')
             return redirect(request.url)
         
         file = request.files['datasetfile']
         
+        # If user does not select file
         if file.filename == '':
             flash('No file selected', 'error')
             return redirect(request.url)
         
         if file and allowed_file(file.filename):
             try:
-                # Generate a unique filename
+                # Generate a unique filename to avoid conflicts
                 filename = f"{uuid.uuid4().hex}_{secure_filename(file.filename)}"
                 filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
                 file.save(filepath)
                 
-                # Validate CSV
+                # Try to read the CSV file to validate it
                 df = pd.read_csv(filepath)
-
-                # ✅ Save to session
+                
+                # Store file info in session
                 session['uploaded_file'] = filename
                 session['original_filename'] = file.filename
                 session['columns'] = df.columns.tolist()
                 session['row_count'] = len(df)
                 session['preview_data'] = df.head(10).to_dict('records')
-
-                print("Session before redirect:", dict(session))
                 
                 flash('File successfully uploaded', 'success')
                 return redirect(url_for('preview'))
                 
             except Exception as e:
+                # Remove the file if there was an error
                 if os.path.exists(filepath):
                     os.remove(filepath)
                 flash(f'Error processing file: {str(e)}', 'error')
@@ -132,16 +127,16 @@ def upload():
 
 @app.route("/preview", methods=["GET"])
 def preview():
+    # Check if a file has been uploaded
     if 'uploaded_file' not in session:
         flash('No file uploaded. Please upload a file first.', 'error')
         return redirect(url_for('upload'))
     
+    # Get the data from session
     filename = session.get('original_filename', 'Unknown')
     columns = session.get('columns', [])
     row_count = session.get('row_count', 0)
     preview_data = session.get('preview_data', [])
-
-    print("Session at preview:", dict(session))
     
     return render_template("preview.html", 
                           filename=filename,
@@ -155,4 +150,5 @@ def chart():
 
 # ----------------- Run -----------------
 if __name__ == "__main__":
+    # Local run
     app.run(debug=True, host="0.0.0.0", port=5000)
