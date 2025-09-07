@@ -62,7 +62,6 @@ def home():
 
 # ✅ fixed route (both /Prediction and /prediction work)
 @app.route("/Prediction", methods=["GET", "POST"])
-@app.route("/prediction", methods=["GET", "POST"])
 def Samples():
     if request.method == "POST":
         data = request.json
@@ -156,3 +155,4 @@ def chart():
 # ----------------- Run -----------------
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
+
