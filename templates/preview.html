@@ -306,12 +306,21 @@
     function showLoader() {
       $('#loading').show();
       
-      // Simulate training process (replace with actual AJAX call to your backend)
-      setTimeout(function() {
-        $('#loading').hide();
-        alert("Training finished! Redirecting to prediction page.");
-        window.location = "{{ url_for('home') }}";
-      }, 3000); // 3 seconds for demo, adjust as needed
+      // Make an AJAX call to trigger the training process
+      $.ajax({
+        url: "{{ url_for('train_model') }}", // This should point to your training endpoint
+        type: 'POST',
+        success: function(response) {
+          $('#loading').hide();
+          alert("Training finished! Redirecting to prediction page.");
+          window.location = "{{ url_for('home') }}"; // Redirect to prediction page
+        },
+        error: function(xhr, status, error) {
+          $('#loading').hide();
+          alert("Training failed. Please try again.");
+          console.error("Training error:", error);
+        }
+      });
     }
     
     // Close mobile menu when clicking on a link
@@ -324,4 +333,3 @@
 </body>
 
 </html>
-
