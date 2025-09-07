@@ -94,14 +94,22 @@ def upload():
         flash("No selected file", "error")
         return redirect(request.url)
 
-    if file:
-        filepath = os.path.join("uploads", file.filename)
-        file.save(filepath)
+    if file and allowed_file(file.filename):
+        # Read the file directly into a DataFrame
+        try:
+            df = pd.read_csv(file)
+            # Store only the first 50 rows for preview to keep session size small
+            session["uploaded_df_data"] = df.head(50).to_json(orient='split')
+            session["original_filename"] = file.filename
+            flash("File successfully uploaded and processed.", "success")
+            return redirect(url_for("preview"))
+        except Exception as e:
+            flash(f"Error reading CSV file: {str(e)}", "error")
+            return redirect(url_for("home")) # Redirect back to upload page
 
-        session["uploaded_file"] = filepath
-        session["original_filename"] = file.filename
-
-        return redirect(url_for("preview"))
+    else:
+        flash("Invalid file type. Please upload a CSV file.", "error")
+        return redirect(request.url)
 
 
 @app.route("/preview", methods=["GET"])
@@ -128,6 +136,7 @@ def chart():
 # ----------------- Run -----------------
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
+
 
 
 
