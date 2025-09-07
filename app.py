@@ -5,6 +5,7 @@ import pandas as pd
 import os
 import uuid
 from werkzeug.utils import secure_filename
+from flask_session import Session   # ✅ use server-side sessions
 
 # ML models (optional imports)
 from sklearn.ensemble import RandomForestClassifier, StackingClassifier
@@ -13,20 +14,28 @@ from sklearn.svm import SVC
 
 app = Flask(__name__)
 
-# -------- Secret Key (important for session) --------
-# You can replace with your own random string
+# -------- Secret Key --------
 app.secret_key = os.environ.get("SECRET_KEY", "supersecretkey123456")
 
-# -------- Configuration --------
+# -------- Config --------
 UPLOAD_FOLDER = 'uploads'
+SESSION_DIR = 'flask_session'   # new folder for session files
 ALLOWED_EXTENSIONS = {'csv'}
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = MAX_FILE_SIZE
+app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SESSION_FILE_DIR'] = SESSION_DIR
+app.config['SESSION_PERMANENT'] = False
 
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
+# Initialize session
+Session(app)
+
+# Make sure folders exist
+for folder in [UPLOAD_FOLDER, SESSION_DIR]:
+    if not os.path.exists(folder):
+        os.makedirs(folder)
 
 
 # -------- Helpers --------
@@ -35,11 +44,9 @@ def allowed_file(filename):
 
 
 def Predict(L):
-    """Predict using saved ML model"""
     filename = 'finalized_model.sav'
     if not os.path.exists(filename):
         raise FileNotFoundError("Model file not found: finalized_model.sav")
-
     loaded_model = pickle.load(open(filename, 'rb'))
     P = loaded_model.predict_proba(np.array([L]))
     return P
@@ -90,7 +97,6 @@ def login():
     return render_template("login.html")
 
 
-# -------- File Upload --------
 @app.route("/upload", methods=["GET", "POST"])
 def upload():
     if request.method == 'POST':
@@ -110,7 +116,7 @@ def upload():
                 filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
                 file.save(filepath)
 
-                # Store file path in session
+                # Save in session
                 session['uploaded_file'] = filepath
                 session['original_filename'] = file.filename
 
@@ -127,7 +133,6 @@ def upload():
     return render_template("upload.html")
 
 
-# -------- Preview --------
 @app.route("/preview", methods=["GET"])
 def preview():
     if 'uploaded_file' not in session:
@@ -137,21 +142,17 @@ def preview():
     try:
         filepath = session['uploaded_file']
         df = pd.read_csv(filepath)
-        df_view = df.head(50)  # show first 50 rows
-
+        df_view = df.head(50)
         return render_template("preview.html", df_view=df_view)
 
     except Exception as e:
         return f"Error loading preview: {str(e)}", 500
 
 
-# -------- Dummy Train Route (AJAX from preview.html) --------
 @app.route("/train_model", methods=["POST"])
 def train_model():
     try:
-        # Example training placeholder (replace with real ML pipeline)
         print("Training started...")
-        # Simulate success
         return jsonify({"status": "success", "message": "Training complete!"})
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
@@ -164,5 +165,4 @@ def chart():
 
 # -------- Run --------
 if __name__ == "__main__":
-    # Local run
     app.run(debug=True, host="0.0.0.0", port=5000)
