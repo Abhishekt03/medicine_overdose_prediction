@@ -83,70 +83,43 @@ def form():
 def login():
     return render_template("login.html")
 
-@app.route("/upload", methods=["GET", "POST"])
+@app.route("/upload", methods=["POST"])
 def upload():
-    if request.method == 'POST':
-        if 'datasetfile' not in request.files:
-            flash('No file part', 'error')
-            return redirect(request.url)
-        
-        file = request.files['datasetfile']
-        
-        if file.filename == '':
-            flash('No file selected', 'error')
-            return redirect(request.url)
-        
-        if file and allowed_file(file.filename):
-            try:
-                # Generate a unique filename
-                filename = f"{uuid.uuid4().hex}_{secure_filename(file.filename)}"
-                filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                file.save(filepath)
-                
-                # Validate CSV
-                df = pd.read_csv(filepath)
+    if "file" not in request.files:
+        flash("No file part", "error")
+        return redirect(request.url)
 
-                # ✅ Save to session
-                session['uploaded_file'] = filename
-                session['original_filename'] = file.filename
-                session['columns'] = df.columns.tolist()
-                session['row_count'] = len(df)
-                session['preview_data'] = df.head(10).to_dict('records')
+    file = request.files["file"]
+    if file.filename == "":
+        flash("No selected file", "error")
+        return redirect(request.url)
 
-                print("Session before redirect:", dict(session))
-                
-                flash('File successfully uploaded', 'success')
-                return redirect(url_for('preview'))
-                
-            except Exception as e:
-                if os.path.exists(filepath):
-                    os.remove(filepath)
-                flash(f'Error processing file: {str(e)}', 'error')
-                return redirect(request.url)
-        else:
-            flash('Invalid file type. Only CSV files are allowed.', 'error')
-            return redirect(request.url)
-    
-    return render_template("upload.html")
+    if file:
+        filepath = os.path.join("uploads", file.filename)
+        file.save(filepath)
+
+        session["uploaded_file"] = filepath
+        session["original_filename"] = file.filename
+
+        return redirect(url_for("preview"))
+
 
 @app.route("/preview", methods=["GET"])
 def preview():
-    print("Session at preview:", dict(session))   # ✅ debug log
-    
-    if 'uploaded_file' not in session:
-        flash('No file uploaded. Please upload a file first.', 'error')
-        return redirect(url_for('upload'))
-    
-    filename = session.get('original_filename', 'Unknown')
-    columns = session.get('columns', [])
-    row_count = session.get('row_count', 0)
-    preview_data = session.get('preview_data', [])
+    try:
+        if "uploaded_file" not in session:
+            flash("No file uploaded. Please upload a file first.", "error")
+            return redirect(url_for("upload"))
 
-    return render_template("preview.html", 
-                          filename=filename,
-                          columns=columns,
-                          row_count=row_count,
-                          preview_data=preview_data)
+        file_path = session["uploaded_file"]
+        df = pd.read_csv(file_path)  # reload CSV
+        df_view = df.head(50)  # preview only 50 rows
+
+        return render_template("preview.html", df_view=df_view)
+    except Exception as e:
+        print("Error in /preview:", str(e))
+        return "Error in preview: " + str(e), 500
+
 
 @app.route("/chart")
 def chart():
@@ -155,5 +128,6 @@ def chart():
 # ----------------- Run -----------------
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
+
 
 
